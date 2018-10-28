@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[rovio 详细安装及运行步骤]]></title>
+    <url>%2F2018%2F10%2F28%2Frovio%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4%2F</url>
+    <content type="text"><![CDATA[rovio 详细安装及运行步骤笔者环境：ubuntu16.04+ROS kinetic 创建工作空间 123$ mkdir -p ~/catkin_vio/src$ cd ~/catkin_vio$ catkin_make 安装依赖 12$ sudo apt-get install freeglut3-dev$ sudo apt-get install libglew-dev 任找一个目录安装kindr 12345$ git clone https://github.com/ANYbotics/kindr.git$ mkdir build$ cd build$ cmake ..$ sudo make install 在新建的catkin_vio/src下： 12$ git clone https://github.com/ethz-asl/rovio.git$ git submodule update --init --recursive 回到catkin_vio下： 12$ catkin_make rovio --cmake-args -DCMAKE_BUILD_TYPE=Release -DMAKE_SCENE=ON$ catkin_make 运行数据集 下载数据集文件如MH_01_easy.bag，在launch文件夹下的rovio_rosbag_node.launch,修改数据文件路径参数 运行： 123$ roscore$ source devel/setup.zsh(or .bash)$ roslaunch rovio rovio_rosbag_node.launch 若发生BagIOException，则在存放数据集的文件夹中手动建一个rovio文件夹，再重新运行即可解决]]></content>
+      <categories>
+        <category>rovio</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[万向锁]]></title>
+    <url>%2F2018%2F10%2F28%2F%E4%B8%87%E5%90%91%E9%94%81%2F</url>
+    <content type="text"><![CDATA[欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按 Z\rightarrow Y\rightarrow X的顺序旋转，其中, 绕物体的Z轴旋转，得到偏航角yaw 绕旋转之后的Y轴旋转，得到俯仰角pitch 绕旋转之后的X轴旋转，得到滚转角roll 万向锁，欧拉角中的奇异性问题。即当$pitch=\pm{90^\circ}$时，旋转后的Z轴与原来的X轴重合，此时就会出现：之前先绕X轴旋转$\theta$，再绕Y轴旋转$\pm90^\circ$得到的结果等价于先绕Y轴旋转$\pm90^\circ$，再绕Z轴旋转$\theta$得到的结果，所以描述不唯一，就存在奇异性问题，所以欧拉角一般不做数学运算，多用于人机交互。 理论上可以证明，仅用三个实数表达三维旋转时，不可避免地存在奇异性问题。旋转向量也有奇异性问题，但出现少。]]></content>
+      <categories>
+        <category>三维空间刚体运动</category>
+      </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2018%2F09%2F03%2Fvo_1%2F</url>
+    <content type="text"><![CDATA[简单的两两帧视觉里程计概述]]></content>
+  </entry>
+</search>

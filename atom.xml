@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>轨迹</title>
+  
+  <subtitle>To be a better man</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://panpanjiang.github.io/"/>
+  <updated>2018-10-28T07:56:33.376Z</updated>
+  <id>http://panpanjiang.github.io/</id>
+  
+  <author>
+    <name>panpanjiang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>rovio 详细安装及运行步骤</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/rovio%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/rovio安装步骤/</id>
+    <published>2018-10-28T07:56:33.376Z</published>
+    <updated>2018-10-28T07:56:33.376Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;rovio-详细安装及运行步骤&quot;&gt;&lt;a href=&quot;#rovio-详细安装及运行步骤&quot; class=&quot;headerlink&quot; title=&quot;rovio 详细安装及运行步骤&quot;&gt;&lt;/a&gt;rovio 详细安装及运行步骤&lt;/h1&gt;&lt;p&gt;&lt;em&gt;笔者环境：ubuntu16.04+ROS kinetic&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="rovio" scheme="http://panpanjiang.github.io/categories/rovio/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>万向锁</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/%E4%B8%87%E5%90%91%E9%94%81/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/万向锁/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-10-28T09:18:29.128Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。&lt;br&gt;例如：按 &lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+Z\rightarrow Y\rightarrow X&lt;/script&gt;&lt;p&gt;的顺序旋转，其中,&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="三维空间刚体运动" scheme="http://panpanjiang.github.io/categories/%E4%B8%89%E7%BB%B4%E7%A9%BA%E9%97%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://panpanjiang.github.io/2018/09/03/vo_1/"/>
+    <id>http://panpanjiang.github.io/2018/09/03/vo_1/</id>
+    <published>2018-09-03T10:25:53.614Z</published>
+    <updated>2018-09-03T10:25:53.614Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简单的两两帧视觉里程计&quot;&gt;&lt;a href=&quot;#简单的两两帧视觉里程计&quot; class=&quot;headerlink&quot; title=&quot;简单的两两帧视觉里程计&quot;&gt;&lt;/a&gt;简单的两两帧视觉里程计&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
