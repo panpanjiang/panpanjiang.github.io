@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://panpanjiang.github.io/"/>
-  <updated>2018-10-28T07:56:33.376Z</updated>
+  <updated>2018-12-02T06:47:11.087Z</updated>
   <id>http://panpanjiang.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单的两两帧单目视觉里程计</title>
+    <link href="http://panpanjiang.github.io/2018/11/16/learn-vo-1/"/>
+    <id>http://panpanjiang.github.io/2018/11/16/learn-vo-1/</id>
+    <published>2018-11-16T08:43:00.000Z</published>
+    <updated>2018-12-02T06:47:11.087Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Visual Odometry" scheme="http://panpanjiang.github.io/categories/Visual-Odometry/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode_tips</title>
+    <link href="http://panpanjiang.github.io/2018/11/09/leetcode-tips/"/>
+    <id>http://panpanjiang.github.io/2018/11/09/leetcode-tips/</id>
+    <published>2018-11-09T02:07:21.000Z</published>
+    <updated>2018-12-02T06:45:14.627Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;寻找一棵Tree的每层中的一个特殊值时，两种方法：广度搜索、深度搜索。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;广度搜索模板：&lt;/p&gt;
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>rovio 详细安装及运行步骤</title>
@@ -26,7 +72,7 @@
     <summary type="html">
     
       &lt;h1 id=&quot;rovio-详细安装及运行步骤&quot;&gt;&lt;a href=&quot;#rovio-详细安装及运行步骤&quot; class=&quot;headerlink&quot; title=&quot;rovio 详细安装及运行步骤&quot;&gt;&lt;/a&gt;rovio 详细安装及运行步骤&lt;/h1&gt;&lt;p&gt;&lt;em&gt;笔者环境：ubuntu16.04+ROS kinetic&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
     
     </summary>
     
@@ -36,17 +82,93 @@
   </entry>
   
   <entry>
-    <title>万向锁</title>
-    <link href="http://panpanjiang.github.io/2018/10/28/%E4%B8%87%E5%90%91%E9%94%81/"/>
-    <id>http://panpanjiang.github.io/2018/10/28/万向锁/</id>
+    <title>337.House RobberIII</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/337/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/337/</id>
     <published>2018-10-28T07:26:40.000Z</published>
-    <updated>2018-10-28T09:18:29.128Z</updated>
+    <updated>2018-11-05T07:16:04.317Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。&lt;br&gt;例如：按 &lt;/p&gt;
+      &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/house-robber-iii/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/house-robber-iii/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>638.Shopping Offers</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/638/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/638/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-05T07:16:21.521Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/shopping-offers/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/shopping-offers/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;思路：递归+回溯。以必须购买的物品及其数量为目标，每次递归时，有两种情况：一为达到目标的最大花费即所有物品按原价购买，将该花费作为上限；二是购买special offers，花费为special offers的price+购买剩余物品的最少花费，此时，要考虑买到的物品是否符合要求，买到的物品数量不得超出目标数。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>756. Pyramid Transition Matrix</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/756/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/756/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-05T07:16:41.661Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/pyramid-transition-matrix/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/pyramid-transition-matrix/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;思路：递归，回溯。&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>851.Loud and Rich</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/851/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/851/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-07T06:55:01.842Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/loud-and-rich/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/loud-and-rich/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;思路：广度搜索。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Rodrigues Formula</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/Rodrigues%20formula/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/Rodrigues formula/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-07T06:47:47.742Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;已知旋转向量为$\theta k$，其中$k$为旋转轴上的单位向量，$|k|=1$，$\theta$为绕旋转轴旋转过的角度，证明Rodrigues formula:&lt;/p&gt;
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;
-Z\rightarrow Y\rightarrow X&lt;/script&gt;&lt;p&gt;的顺序旋转，其中,&lt;/p&gt;
+R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times&lt;/script&gt;&lt;p&gt;其中，R为对应的旋转矩阵。&lt;/p&gt;
     
     </summary>
     
@@ -56,23 +178,37 @@ Z\rightarrow Y\rightarrow X&lt;/script&gt;&lt;p&gt;的顺序旋转，其中,&lt;
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://panpanjiang.github.io/2018/09/03/vo_1/"/>
-    <id>http://panpanjiang.github.io/2018/09/03/vo_1/</id>
-    <published>2018-09-03T10:25:53.614Z</published>
-    <updated>2018-09-03T10:25:53.614Z</updated>
+    <title>万向锁</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/%E4%B8%87%E5%90%91%E9%94%81/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/万向锁/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-05T07:19:10.561Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h1 id=&quot;简单的两两帧视觉里程计&quot;&gt;&lt;a href=&quot;#简单的两两帧视觉里程计&quot; class=&quot;headerlink&quot; title=&quot;简单的两两帧视觉里程计&quot;&gt;&lt;/a&gt;简单的两两帧视觉里程计&lt;/h1&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot;
-        
-      
+      &lt;p&gt;欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。&lt;br&gt;例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中,&lt;/p&gt;
     
     </summary>
+    
+      <category term="三维空间刚体运动" scheme="http://panpanjiang.github.io/categories/%E4%B8%89%E7%BB%B4%E7%A9%BA%E9%97%B4%E5%88%9A%E4%BD%93%E8%BF%90%E5%8A%A8/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SO(3)伴随证明</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/%E4%BC%B4%E9%9A%8F%E6%8E%A8%E5%AF%BC/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/伴随推导/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-18T08:34:06.394Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;证明-：-Rexp-a-times-R-T-exp-Ra-times&quot;&gt;&lt;a href=&quot;#证明-：-Rexp-a-times-R-T-exp-Ra-times&quot; class=&quot;headerlink&quot; title=&quot;证明 ：$Rexp(a^\times)R^T=exp((Ra)^\times)$&quot;&gt;&lt;/a&gt;证明 ：$Rexp(a^\times)R^T=exp((Ra)^\times)$&lt;/h4&gt;
+    
+    </summary>
+    
+      <category term="李群与李代数" scheme="http://panpanjiang.github.io/categories/%E6%9D%8E%E7%BE%A4%E4%B8%8E%E6%9D%8E%E4%BB%A3%E6%95%B0/"/>
     
     
   </entry>

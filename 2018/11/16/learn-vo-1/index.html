@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="vslam">
+<meta name="description" content="这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv.">
 <meta name="keywords" content="slam">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://panpanjiang.github.io/categories/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的两两帧单目视觉里程计">
+<meta property="og:url" content="http://panpanjiang.github.io/2018/11/16/learn-vo-1/index.html">
 <meta property="og:site_name" content="轨迹">
-<meta property="og:description" content="vslam">
+<meta property="og:description" content="这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-29T08:07:13.154Z">
+<meta property="og:image" content="http://panpanjiang.github.io/2018/11/16/learn-vo-1/运行截图.png">
+<meta property="og:image" content="http://panpanjiang.github.io/2018/11/16/learn-vo-1/比较图.png">
+<meta property="og:updated_time" content="2018-12-02T06:47:11.087Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="vslam">
+<meta name="twitter:title" content="简单的两两帧单目视觉里程计">
+<meta name="twitter:description" content="这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv.">
+<meta name="twitter:image" content="http://panpanjiang.github.io/2018/11/16/learn-vo-1/运行截图.png">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://panpanjiang.github.io/categories/"/>
+  <link rel="canonical" href="http://panpanjiang.github.io/2018/11/16/learn-vo-1/"/>
 
 
 
 
 
-  <title>分类 | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>简单的两两帧单目视觉里程计 | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,40 +270,218 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://panpanjiang.github.io/2018/11/16/learn-vo-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panpanjiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轨迹">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">分类</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 5 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Visual-Odometry/">Visual Odometry</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/rovio/">rovio</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/三维空间刚体运动/">三维空间刚体运动</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/李群与李代数/">李群与李代数</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">简单的两两帧单目视觉里程计</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-16T16:43:00+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Visual-Odometry/" itemprop="url" rel="index">
+                    <span itemprop="name">Visual Odometry</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv.</p>
+<a id="more"></a>
+<h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><h4 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h4><p>使用相机采集的图片序列；相机的内参（即焦距$f_x$,$fy$,相机光心$c_x$,$c_y$,畸变参数$k_1$,$k_2$,$k_3$,$p_1$,$p_2$），相机内参可通过Opencv、matlab、kalibr等工具进行标定。</p>
+<h4 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h4><p>以第一帧图片为参考系，输出每帧图片的坐标。</p>
+<h4 id="算法步骤："><a href="#算法步骤：" class="headerlink" title="算法步骤："></a>算法步骤：</h4><ul>
+<li>读入相机参数</li>
+<li>获取两帧连续图像$I^t$,$I^{t+1}$</li>
+<li>对获取的图像进行去畸变处理</li>
+<li>对$I^t$提取FAST特征点，使用LK金字塔光流法在$I^{t+1}$中跟踪这些特征点，若跟踪的特征点数量小于预设的阈值，则在$I^{t+1}$中重新提取FAST特征点</li>
+<li>使用五点法及RANSAC计算本质矩阵$E$</li>
+<li>通过本质矩阵$E$估计两帧之间的$R,t$</li>
+<li>使用数据集中的真实轨迹获取两帧之间的尺度因子，计算出$I^{t+1}$在参考系中的$R,t$并输出显示</li>
+</ul>
+<h4 id="核心算法代码："><a href="#核心算法代码：" class="headerlink" title="核心算法代码："></a>核心算法代码：</h4><ul>
+<li>从第二帧开始，通过真实轨迹坐标计算并保存每帧的尺度到vector中</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getAbusoluteScale</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; scale,<span class="built_in">string</span> ground_truth)</span></span>&#123;</span><br><span class="line">	ifstream in;</span><br><span class="line">	in.open(ground_truth);</span><br><span class="line">	scale.push_back(<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">string</span> line=<span class="string">""</span>;</span><br><span class="line">	getline(in,line);</span><br><span class="line">	<span class="function"><span class="built_in">istringstream</span> <span class="title">item</span><span class="params">(line)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> x_pre=<span class="number">0</span>,y_pre=<span class="number">0</span>,z_pre=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">double</span> x=<span class="number">0</span>,y=<span class="number">0</span>,z=<span class="number">0</span>;</span><br><span class="line">	item&gt;&gt;x_pre&gt;&gt;y_pre&gt;&gt;z_pre;</span><br><span class="line">	<span class="keyword">while</span>(getline(in,line))&#123;</span><br><span class="line">		<span class="function"><span class="built_in">istringstream</span> <span class="title">nextItem</span><span class="params">(line)</span></span>;</span><br><span class="line">		nextItem&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">		scale.push_back(<span class="built_in">sqrt</span>((x - x_pre)*(x - x_pre) + (y - y_pre)*(y - y_pre) + (z - z_pre)*(z - z_pre)));</span><br><span class="line">		x_pre=x;</span><br><span class="line">		y_pre=y;</span><br><span class="line">		z_pre=z;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>转灰度图、去畸变</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cvtColor(ref,ref,CV_BGR2GRAY);</span><br><span class="line">undistort(ref,ref,K,DistCoef);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取FAST特征点，并将其存于类型为vector<point2f>的kp中，便于后续LK跟踪、本质矩阵计算</point2f></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">featureDetection</span><span class="params">(Mat&amp; frame,<span class="built_in">vector</span>&lt;Point2f&gt;&amp; kp)</span></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;Point2f&gt; keypoints;</span><br><span class="line">	FAST(frame,keypoints,<span class="number">40</span>,<span class="literal">true</span>);</span><br><span class="line">	KeyPoint::convert(keypoints,kp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用opencv的函数进行光流跟踪，返回两幅图像的匹配点，并将跟踪失败的点去掉</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LKFeatureTracking</span><span class="params">(Mat&amp; ref,Mat&amp; curr,<span class="built_in">vector</span>&lt;Point2f&gt;&amp; ref_kp,<span class="built_in">vector</span>&lt;Point2f&gt;&amp; cur_kp)</span></span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;uchar&gt; status;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">float</span>&gt; err;</span><br><span class="line">	cvCalcOpticalFlowPyrLK(ref,curr,ref_kp,cur_kp,status,err);</span><br><span class="line">	<span class="built_in">vector</span>&lt;Point2f&gt;::iterator ref_iter=ref_kp.begin();</span><br><span class="line">	<span class="built_in">vector</span>&lt;Point2f&gt;::iterator cur_iter=cur_kp.begin();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> state:status)&#123;</span><br><span class="line">		<span class="keyword">if</span>(state==<span class="number">0</span>)&#123;</span><br><span class="line">			ref_kp.erase(ref_iter);</span><br><span class="line">			cur_kp.erase(cur_iter);			</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			ref_iter++;</span><br><span class="line">			cur_iter++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>计算本质矩阵，并从本质矩阵中估计R，t</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E=findEssentialMat(cur_kp,ref_kp,K,RANSAC);</span><br><span class="line">recoverPose(E, cur_kp,ref_kp,K,R, t);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>设有三帧图像,索引分别为1,2,3，其中，</p>
+<script type="math/tex; mode=display">
+T_{12}=\left[\begin{matrix}
+R_{12} & t_{12}\\
+0^T & 1
+\end{matrix}\right]
+
+T_{23}=\left[\begin{matrix}
+R_{23} & t_{23}\\
+0^T & 1
+\end{matrix}\right]\\</script><p>所以第三帧到第一帧的变换矩阵为：</p>
+<script type="math/tex; mode=display">
+T_{13}=T_{12}T_{23}=\left[\begin{matrix}
+R_{12}R_{23} & R_{12}t_{23}+t_{12}\\
+0^T & 1
+\end{matrix}\right]</script><p>所以，获取各帧图像的pose代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t_f=R_f*(scale[frame_id]*t)+t_f;</span><br><span class="line">R_f=R_f*R;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要跟踪的特征点少于阈值，则重新提取特征点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(cur_kp.size()&lt;MIN_NUM)&#123;</span><br><span class="line">	featureDetection(curr,cur_kp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="数据集KITTI，运行结果："><a href="#数据集KITTI，运行结果：" class="headerlink" title="数据集KITTI，运行结果："></a>数据集KITTI，运行结果：</h4><p><img src="/2018/11/16/learn-vo-1/运行截图.png" alt=""></p>
+<h4 id="与真实轨迹比较："><a href="#与真实轨迹比较：" class="headerlink" title="与真实轨迹比较："></a>与真实轨迹比较：</h4><p><img src="/2018/11/16/learn-vo-1/比较图.png" alt=""></p>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p><a href="http://avisingh599.github.io/vision/monocular-vo/" target="_blank" rel="noopener">http://avisingh599.github.io/vision/monocular-vo/</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/09/leetcode-tips/" rel="next" title="leetcode_tips">
+                <i class="fa fa-chevron-left"></i> leetcode_tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -333,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -396,6 +586,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述："><span class="nav-text">问题描述：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入："><span class="nav-text">输入：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出："><span class="nav-text">输出：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法步骤："><span class="nav-text">算法步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核心算法代码："><span class="nav-text">核心算法代码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据集KITTI，运行结果："><span class="nav-text">数据集KITTI，运行结果：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与真实轨迹比较："><span class="nav-text">与真实轨迹比较：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料："><span class="nav-text">参考资料：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

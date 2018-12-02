@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -81,21 +81,21 @@
 
 
 
-<meta name="description" content="欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按   Z\rightarrow Y\rightarrow X的顺序旋转，其中,">
+<meta name="description" content="欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中,">
 <meta name="keywords" content="slam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="万向锁">
 <meta property="og:url" content="http://panpanjiang.github.io/2018/10/28/万向锁/index.html">
 <meta property="og:site_name" content="轨迹">
-<meta property="og:description" content="欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按   Z\rightarrow Y\rightarrow X的顺序旋转，其中,">
+<meta property="og:description" content="欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://panpanjiang.github.io/2018/10/28/万向锁/万向锁/before.png">
-<meta property="og:image" content="http://panpanjiang.github.io/2018/10/28/万向锁/万向锁/after.png">
-<meta property="og:updated_time" content="2018-10-28T09:18:29.128Z">
+<meta property="og:image" content="http://panpanjiang.github.io/2018/10/28/万向锁/before.png">
+<meta property="og:image" content="http://panpanjiang.github.io/2018/10/28/万向锁/after.png">
+<meta property="og:updated_time" content="2018-11-05T07:19:10.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="万向锁">
-<meta name="twitter:description" content="欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按   Z\rightarrow Y\rightarrow X的顺序旋转，其中,">
-<meta name="twitter:image" content="http://panpanjiang.github.io/2018/10/28/万向锁/万向锁/before.png">
+<meta name="twitter:description" content="欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中,">
+<meta name="twitter:image" content="http://panpanjiang.github.io/2018/10/28/万向锁/before.png">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <title>万向锁 | 轨迹</title>
+  <title>万向锁 | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -150,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -371,9 +371,7 @@
       
 
       
-        <p>欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。<br>例如：按 </p>
-<script type="math/tex; mode=display">
-Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
+        <p>欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。<br>例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中,</p>
 <a id="more"></a>
 <ul>
 <li>绕物体的Z轴旋转，得到偏航角yaw</li>
@@ -382,7 +380,12 @@ Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
 </ul>
 <p>万向锁，欧拉角中的奇异性问题。即当$pitch=\pm{90^\circ}$时，旋转后的Z轴与原来的X轴重合，此时就会出现：之前先绕X轴旋转$\theta$，再绕Y轴旋转$\pm90^\circ$得到的结果等价于先绕Y轴旋转$\pm90^\circ$，再绕Z轴旋转$\theta$得到的结果，所以描述不唯一，就存在奇异性问题，所以欧拉角一般不做数学运算，多用于人机交互。</p>
 <p>理论上可以证明，仅用三个实数表达三维旋转时，不可避免地存在奇异性问题。旋转向量也有奇异性问题，但出现少。</p>
-<p><img src="万向锁/before.png" alt="绕Y轴旋转前"><br><img src="万向锁/after.png" alt="绕Y轴旋转后，Z轴与旋转前的X轴重合"></p>
+<center>绕Y轴旋转前</center>
+
+<p><img src="/2018/10/28/万向锁/before.png" alt="绕Y轴旋转前"></p>
+<center>绕Y轴旋转后，Z轴与旋转前的X轴重合</center>
+
+<p><img src="/2018/10/28/万向锁/after.png" alt="绕Y轴旋转后，Z轴与旋转前的X轴重合"></p>
 
       
     </div>
@@ -407,8 +410,8 @@ Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/03/vo_1/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/10/28/伴随推导/" rel="next" title="SO(3)伴随证明">
+                <i class="fa fa-chevron-left"></i> SO(3)伴随证明
               </a>
             
           </div>
@@ -417,8 +420,8 @@ Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/28/rovio安装步骤/" rel="prev" title="rovio 详细安装及运行步骤">
-                rovio 详细安装及运行步骤 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/28/Rodrigues formula/" rel="prev" title="Rodrigues Formula">
+                Rodrigues Formula <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -491,7 +494,7 @@ Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -502,7 +505,7 @@ Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1052,6 +1055,28 @@ Z\rightarrow Y\rightarrow X</script><p>的顺序旋转，其中,</p>
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 
   
 

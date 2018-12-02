@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[简单的两两帧单目视觉里程计]]></title>
+    <url>%2F2018%2F11%2F16%2Flearn-vo-1%2F</url>
+    <content type="text"><![CDATA[这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv. 问题描述：输入：使用相机采集的图片序列；相机的内参（即焦距$f_x$,$fy$,相机光心$c_x$,$c_y$,畸变参数$k_1$,$k_2$,$k_3$,$p_1$,$p_2$），相机内参可通过Opencv、matlab、kalibr等工具进行标定。 输出：以第一帧图片为参考系，输出每帧图片的坐标。 算法步骤： 读入相机参数 获取两帧连续图像$I^t$,$I^{t+1}$ 对获取的图像进行去畸变处理 对$I^t$提取FAST特征点，使用LK金字塔光流法在$I^{t+1}$中跟踪这些特征点，若跟踪的特征点数量小于预设的阈值，则在$I^{t+1}$中重新提取FAST特征点 使用五点法及RANSAC计算本质矩阵$E$ 通过本质矩阵$E$估计两帧之间的$R,t$ 使用数据集中的真实轨迹获取两帧之间的尺度因子，计算出$I^{t+1}$在参考系中的$R,t$并输出显示 核心算法代码： 从第二帧开始，通过真实轨迹坐标计算并保存每帧的尺度到vector中 12345678910111213141516171819void getAbusoluteScale(vector&lt;double&gt; scale,string ground_truth)&#123; ifstream in; in.open(ground_truth); scale.push_back(1); string line=""; getline(in,line); istringstream item(line); double x_pre=0,y_pre=0,z_pre=0; double x=0,y=0,z=0; item&gt;&gt;x_pre&gt;&gt;y_pre&gt;&gt;z_pre; while(getline(in,line))&#123; istringstream nextItem(line); nextItem&gt;&gt;x&gt;&gt;y&gt;&gt;z; scale.push_back(sqrt((x - x_pre)*(x - x_pre) + (y - y_pre)*(y - y_pre) + (z - z_pre)*(z - z_pre))); x_pre=x; y_pre=y; z_pre=z; &#125;&#125; 转灰度图、去畸变 12cvtColor(ref,ref,CV_BGR2GRAY);undistort(ref,ref,K,DistCoef); 获取FAST特征点，并将其存于类型为vector的kp中，便于后续LK跟踪、本质矩阵计算 12345void featureDetection(Mat&amp; frame,vector&lt;Point2f&gt;&amp; kp)&#123; vector&lt;Point2f&gt; keypoints; FAST(frame,keypoints,40,true); KeyPoint::convert(keypoints,kp);&#125; 使用opencv的函数进行光流跟踪，返回两幅图像的匹配点，并将跟踪失败的点去掉 12345678910111213141516void LKFeatureTracking(Mat&amp; ref,Mat&amp; curr,vector&lt;Point2f&gt;&amp; ref_kp,vector&lt;Point2f&gt;&amp; cur_kp)&#123; vector&lt;uchar&gt; status; vector&lt;float&gt; err; cvCalcOpticalFlowPyrLK(ref,curr,ref_kp,cur_kp,status,err); vector&lt;Point2f&gt;::iterator ref_iter=ref_kp.begin(); vector&lt;Point2f&gt;::iterator cur_iter=cur_kp.begin(); for(auto state:status)&#123; if(state==0)&#123; ref_kp.erase(ref_iter); cur_kp.erase(cur_iter); &#125;else&#123; ref_iter++; cur_iter++; &#125; &#125; &#125; 计算本质矩阵，并从本质矩阵中估计R，t 12E=findEssentialMat(cur_kp,ref_kp,K,RANSAC);recoverPose(E, cur_kp,ref_kp,K,R, t); 设有三帧图像,索引分别为1,2,3，其中， T_{12}=\left[\begin{matrix} R_{12} & t_{12}\\ 0^T & 1 \end{matrix}\right] T_{23}=\left[\begin{matrix} R_{23} & t_{23}\\ 0^T & 1 \end{matrix}\right]\\所以第三帧到第一帧的变换矩阵为： T_{13}=T_{12}T_{23}=\left[\begin{matrix} R_{12}R_{23} & R_{12}t_{23}+t_{12}\\ 0^T & 1 \end{matrix}\right]所以，获取各帧图像的pose代码如下： 12t_f=R_f*(scale[frame_id]*t)+t_f;R_f=R_f*R; 如果需要跟踪的特征点少于阈值，则重新提取特征点 123if(cur_kp.size()&lt;MIN_NUM)&#123; featureDetection(curr,cur_kp);&#125; 数据集KITTI，运行结果： 与真实轨迹比较： 参考资料：http://avisingh599.github.io/vision/monocular-vo/]]></content>
+      <categories>
+        <category>Visual Odometry</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode_tips]]></title>
+    <url>%2F2018%2F11%2F09%2Fleetcode-tips%2F</url>
+    <content type="text"><![CDATA[寻找一棵Tree的每层中的一个特殊值时，两种方法：广度搜索、深度搜索。 广度搜索模板： 1234567891011121314queue&lt;int&gt; que;que.push(root);while(que.size()&gt;0)&#123; int num=que.size();//当前que中只存储了一层的节点 for(int i=0;i&lt;num;i++)&#123;//一次将一层中的节点遍历 TreeNode* cur_row=que.front(); que.pop(); //do something to get the value of this level here if(root-&gt;left!=NULL) que.push(root-&gt;left); if(root-&gt;right!=NULL) que.push(root-&gt;right); &#125;&#125; 深度搜索模板，例如找每层最右边的节点值： 12345678void dfs(TreeNode* root,int level,vector&lt;int&gt;&amp; result)&#123; if(!root) return; //当前level还没找到最右边的值，将当前值作为该level的最右边值 if(result.size()&lt;level) result.push_back(root-&gt;val); //接着找下一层最右边的值 dfs(root-&gt;right,level+1,result); dfs(root-&gt;left,leve+1,result);&#125;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[rovio 详细安装及运行步骤]]></title>
     <url>%2F2018%2F10%2F28%2Frovio%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4%2F</url>
     <content type="text"><![CDATA[rovio 详细安装及运行步骤笔者环境：ubuntu16.04+ROS kinetic 创建工作空间 123$ mkdir -p ~/catkin_vio/src$ cd ~/catkin_vio$ catkin_make 安装依赖 12$ sudo apt-get install freeglut3-dev$ sudo apt-get install libglew-dev 任找一个目录安装kindr 12345$ git clone https://github.com/ANYbotics/kindr.git$ mkdir build$ cd build$ cmake ..$ sudo make install 在新建的catkin_vio/src下： 12$ git clone https://github.com/ethz-asl/rovio.git$ git submodule update --init --recursive 回到catkin_vio下： 12$ catkin_make rovio --cmake-args -DCMAKE_BUILD_TYPE=Release -DMAKE_SCENE=ON$ catkin_make 运行数据集 下载数据集文件如MH_01_easy.bag，在launch文件夹下的rovio_rosbag_node.launch,修改数据文件路径参数 运行： 123$ roscore$ source devel/setup.zsh(or .bash)$ roslaunch rovio rovio_rosbag_node.launch 若发生BagIOException，则在存放数据集的文件夹中手动建一个rovio文件夹，再重新运行即可解决]]></content>
@@ -9,16 +25,59 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[万向锁]]></title>
-    <url>%2F2018%2F10%2F28%2F%E4%B8%87%E5%90%91%E9%94%81%2F</url>
-    <content type="text"><![CDATA[欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按 Z\rightarrow Y\rightarrow X的顺序旋转，其中, 绕物体的Z轴旋转，得到偏航角yaw 绕旋转之后的Y轴旋转，得到俯仰角pitch 绕旋转之后的X轴旋转，得到滚转角roll 万向锁，欧拉角中的奇异性问题。即当$pitch=\pm{90^\circ}$时，旋转后的Z轴与原来的X轴重合，此时就会出现：之前先绕X轴旋转$\theta$，再绕Y轴旋转$\pm90^\circ$得到的结果等价于先绕Y轴旋转$\pm90^\circ$，再绕Z轴旋转$\theta$得到的结果，所以描述不唯一，就存在奇异性问题，所以欧拉角一般不做数学运算，多用于人机交互。 理论上可以证明，仅用三个实数表达三维旋转时，不可避免地存在奇异性问题。旋转向量也有奇异性问题，但出现少。]]></content>
+    <title><![CDATA[337.House RobberIII]]></title>
+    <url>%2F2018%2F10%2F28%2F337%2F</url>
+    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/house-robber-iii/ 思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。 123456789101112131415161718192021222324class Solution &#123;public: int rob(TreeNode* root) &#123; if(!root) return 0; int rob,notRob; dfs(root,rob,notRob); return max(rob,notRob); &#125;private: void dfs(TreeNode* root,int&amp; rob,int&amp; notRob)&#123; if(!root)&#123; rob=0; notRob=0; return; &#125; dfs(root-&gt;left,rob,notRob); int x,y; dfs(root-&gt;right,x,y); int tmp=rob; rob=root-&gt;val+notRob+y; notRob=max(tmp,notRob)+max(x,y); &#125; &#125;;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[638.Shopping Offers]]></title>
+    <url>%2F2018%2F10%2F28%2F638%2F</url>
+    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/shopping-offers/ 思路：递归+回溯。以必须购买的物品及其数量为目标，每次递归时，有两种情况：一为达到目标的最大花费即所有物品按原价购买，将该花费作为上限；二是购买special offers，花费为special offers的price+购买剩余物品的最少花费，此时，要考虑买到的物品是否符合要求，买到的物品数量不得超出目标数。 1234567891011121314151617181920212223242526class Solution &#123;public: int shoppingOffers(vector&lt;int&gt;&amp; price, vector&lt;vector&lt;int&gt;&gt;&amp; special, vector&lt;int&gt;&amp; needs) &#123; int minpay=0; for(int i=0;i&lt;needs.size();i++)&#123; minpay+=price[i]*needs[i]; &#125; for(auto s:special)&#123; bool can=true; for(int i=0;i&lt;needs.size();i++)&#123; if(needs[i]&lt;s[i])&#123; can=false; break; &#125; &#125; if(can)&#123; for(int i=0;i&lt;needs.size();i++) needs[i]-=s[i]; minpay=min(minpay,s[needs.size()]+shoppingOffers(price,special,needs)); for(int i=0;i&lt;needs.size();i++) needs[i]+=s[i]; &#125; &#125; return minpay; &#125;&#125;;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[756. Pyramid Transition Matrix]]></title>
+    <url>%2F2018%2F10%2F28%2F756%2F</url>
+    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/pyramid-transition-matrix/ 思路：递归，回溯。 123456789101112131415161718192021222324252627282930313233343536class Solution &#123;public: bool pyramidTransition(string bottom, vector&lt;string&gt;&amp; allowed) &#123; unordered_map&lt;string,vector&lt;char&gt;&gt; allowed_map; for(string element:allowed)&#123; allowed_map[element.substr(0,2)].push_back(element.back()); &#125; string current=""; return DFS(bottom,current,0,allowed_map); &#125;private: //两个字母用一个字母代替 //pre未替换完的字符串 //current当前已替换完得到的字符串 //k,pre开始要替换的字母的index //dict包含可替换的选择 bool DFS(string&amp; pre,string&amp; current,int k,unordered_map&lt;string,vector&lt;char&gt;&gt;&amp; dict)&#123; if(pre.length()==1) return true; if(k+1==pre.length())&#123; string next=""; return DFS(current,next,0,dict); &#125; else&#123; string key=pre.substr(k,2); if(dict.count(key)==0) return false; vector&lt;char&gt; value=dict[key]; for(auto c:value)&#123; current.push_back(c); if(DFS(pre,current,k+1,dict)) return true; current.pop_back(); &#125; return false; &#125; &#125; &#125;;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[851.Loud and Rich]]></title>
+    <url>%2F2018%2F10%2F28%2F851%2F</url>
+    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/loud-and-rich/ 思路：广度搜索。 首先初始化answer[i]=i，即为其本身，然后建立一个二维graph，graph[i]存储的是遍历richer得到的比i有钱的人。并在遍历richer的时候给answer[i]赋值为当前遍历得到的符合要求的最小quiet的j。接下来从0开始，依次循环遍历graph，每次循环先将graph[i]中的元素压入临时队列que,然后进行广度搜索，在搜索的同时进行quiet的比较。由于之前在遍历richer的时候已经得到并存储了每组的quiet最小值，所以此时的比较是当前组的quiet值与出队元素组的quiet值的比较，就不用一个一个地比。当graph[0]搜索完成后，得到的answer[0]就是最后的结果，当后续graph[i]进行搜索时，若出队元素为0时，则无需将graph[0]中的元素压入队列，只需与answer[0]比较即可。runtime:48ms,由于queue不支持遍历，set虽然可以去重，但效率比vector低很多，所以graph使用$vector]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Rodrigues Formula]]></title>
+    <url>%2F2018%2F10%2F28%2FRodrigues%20formula%2F</url>
+    <content type="text"><![CDATA[已知旋转向量为$\theta k$，其中$k$为旋转轴上的单位向量，$|k|=1$，$\theta$为绕旋转轴旋转过的角度，证明Rodrigues formula: R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times其中，R为对应的旋转矩阵。 设$v$为将被旋转的向量，将其分解为与$k$平行方向及与$k$垂直方向上的两个分量$v_{||}$,$v_{\bot}$。分解如下图所示： 可得： v=v_{||}+v_\bot其中，由投影可知： v_{||}=(v\cdot k)k v_\bot=-k\times(k\times v)将$v$绕$k$轴旋转$\theta$角，即分别将其的两个分量绕$k$轴旋转$\theta$角，旋转后的矢量为： v_{rot}=v_{||rot}+v_{\bot rot} v_{\bot rot}=\cos\theta v_\bot+\sin\theta(k\times v_\bot)由于与$k$轴平行的分量旋转并不发生变化，所以： v_{||rot}=v_{||}其中 k\times v_\bot=k\times (v-v_{||})=k\times v-k\times v_{||}=k\times v所以： v_{rot}=v_{||}+\cos\theta v_\bot+\sin\theta(k\times v)\\ =v-v_\bot+\cos\theta v_\bot+\sin\theta(k\times v)\\ =v+(1-\cos\theta)k\times(k\times v)+\sin\theta(k\times v)\\ =v+(1-\cos\theta)k^\times k^\times v+\sin\theta k^\times v其中$k^\times$为k的反对称矩阵，即 k^\times=\left[ \begin{matrix} 0 & -k_3 & k_2\\ k_3 & 0 & -k_1\\ -k_2 & k_1 &0 \end{matrix} \right]叉积用矩阵表达为: k\times v=k^\times v通过计算可知： I+k^\times k^\times=kk^T代入得： v_{rot}=v+(1-\cos\theta)(kk^T-I)v+\sin\theta k^\times v\\ =\cos\theta Iv+(1-\cos\theta)kk^Tv+\sin\theta k^\times v\\ =(\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times)v又： v_{rot}=Rv所以： R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times证毕。]]></content>
       <categories>
         <category>三维空间刚体运动</category>
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>%2F2018%2F09%2F03%2Fvo_1%2F</url>
-    <content type="text"><![CDATA[简单的两两帧视觉里程计概述]]></content>
+    <title><![CDATA[万向锁]]></title>
+    <url>%2F2018%2F10%2F28%2F%E4%B8%87%E5%90%91%E9%94%81%2F</url>
+    <content type="text"><![CDATA[欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中, 绕物体的Z轴旋转，得到偏航角yaw 绕旋转之后的Y轴旋转，得到俯仰角pitch 绕旋转之后的X轴旋转，得到滚转角roll 万向锁，欧拉角中的奇异性问题。即当$pitch=\pm{90^\circ}$时，旋转后的Z轴与原来的X轴重合，此时就会出现：之前先绕X轴旋转$\theta$，再绕Y轴旋转$\pm90^\circ$得到的结果等价于先绕Y轴旋转$\pm90^\circ$，再绕Z轴旋转$\theta$得到的结果，所以描述不唯一，就存在奇异性问题，所以欧拉角一般不做数学运算，多用于人机交互。 理论上可以证明，仅用三个实数表达三维旋转时，不可避免地存在奇异性问题。旋转向量也有奇异性问题，但出现少。 绕Y轴旋转前 绕Y轴旋转后，Z轴与旋转前的X轴重合]]></content>
+      <categories>
+        <category>三维空间刚体运动</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[SO(3)伴随证明]]></title>
+    <url>%2F2018%2F10%2F28%2F%E4%BC%B4%E9%9A%8F%E6%8E%A8%E5%AF%BC%2F</url>
+    <content type="text"><![CDATA[证明 ：$Rexp(a^\times)R^T=exp((Ra)^\times)$ 解： 将左侧展开得： Rexp(a^\times)R^T=R\sum\frac{(a^\times)^n}{n!}R^T\\ =\sum\frac{R(a^\times)^nR^T}{n!}\\ =\sum\frac{(Ra^\times R^T)(Ra^\times R^T)(Ra^\times R^T)...}{n!}\\ =\sum\frac{(Ra^\times R^T)^n}{n!}\\ =exp(Ra^\times R^T)对要证等式两边同取对数，因此只要证明$Ra^\times R^T=(Ra)^\times$即可。 式子右边同乘向量$v$: (Ra)^\times v=(Ra)\times (RR^Tv)=R(a\times R^Tv)=Ra^\times R^Tv证毕。]]></content>
+      <categories>
+        <category>李群与李代数</category>
+      </categories>
   </entry>
 </search>
