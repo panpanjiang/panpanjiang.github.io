@@ -517,21 +517,15 @@
 
       
         
-          
-            <ul>
-<li><p>寻找一棵Tree的每层中的一个特殊值时，两种方法：广度搜索、深度搜索。</p>
-<ol>
-<li><p>广度搜索模板：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; que;</span><br><span class="line">que.push(root);</span><br><span class="line"><span class="keyword">while</span>(que.size()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">int</span> num=que.size();<span class="comment">//当前que中只存储了一层的节点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;<span class="comment">//一次将一层中的节点遍历</span></span><br><span class="line">        TreeNode* cur_row=que.front();</span><br><span class="line">        que.pop();</span><br><span class="line">        <span class="comment">//do something to get the value of this level here</span></span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left!=<span class="literal">NULL</span>)</span><br><span class="line">            que.push(root-&gt;left);</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;right!=<span class="literal">NULL</span>)</span><br><span class="line">            que.push(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>深度搜索模板，例如找每层最右边的节点值：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root,<span class="keyword">int</span> level,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; result)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line">    <span class="comment">//当前level还没找到最右边的值，将当前值作为该level的最右边值</span></span><br><span class="line">    <span class="keyword">if</span>(result.size()&lt;level) result.push_back(root-&gt;val);</span><br><span class="line">    <span class="comment">//接着找下一层最右边的值</span></span><br><span class="line">    dfs(root-&gt;right,level+<span class="number">1</span>,result);</span><br><span class="line">    dfs(root-&gt;left,leve+<span class="number">1</span>,result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-
-          
+          <ul>
+<li><p>寻找一棵Tree的每层中的一个特殊值时，两种方法：广度搜索、深度搜索。</p></li></ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/09/leetcode-tips/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

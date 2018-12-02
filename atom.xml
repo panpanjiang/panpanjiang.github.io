@@ -39,21 +39,12 @@
     <link href="http://panpanjiang.github.io/2018/11/09/leetcode-tips/"/>
     <id>http://panpanjiang.github.io/2018/11/09/leetcode-tips/</id>
     <published>2018-11-09T02:07:21.000Z</published>
-    <updated>2018-12-02T06:45:14.627Z</updated>
+    <updated>2018-12-02T06:50:06.027Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;寻找一棵Tree的每层中的一个特殊值时，两种方法：广度搜索、深度搜索。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;广度搜索模板：&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;寻找一棵Tree的每层中的一个特殊值时，两种方法：广度搜索、深度搜索。&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
     
     </summary>
     
