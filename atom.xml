@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://panpanjiang.github.io/"/>
-  <updated>2018-12-02T06:47:11.087Z</updated>
+  <updated>2018-12-14T05:55:52.381Z</updated>
   <id>http://panpanjiang.github.io/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>二维坐标系间的转换</title>
+    <link href="http://panpanjiang.github.io/2018/12/14/Oriented-Fast/"/>
+    <id>http://panpanjiang.github.io/2018/12/14/Oriented-Fast/</id>
+    <published>2018-12-14T02:42:21.000Z</published>
+    <updated>2018-12-14T05:55:52.381Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h4&gt;&lt;p&gt;在ORB特征点计算描述时，在计算之前需要将要比较的点对p,q根据Fast里计算出的方向$\theta$，先转一下得到$p^{‘},q^{‘}$，再比较$p^{‘},q^{‘}​$。那么这个转换如何计算呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="图像基础" scheme="http://panpanjiang.github.io/categories/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>图像去畸变</title>
+    <link href="http://panpanjiang.github.io/2018/12/07/undistorted/"/>
+    <id>http://panpanjiang.github.io/2018/12/07/undistorted/</id>
+    <published>2018-12-07T09:34:51.000Z</published>
+    <updated>2018-12-14T05:56:37.689Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;现实生活中的图像总存在畸变。原则上来说,针孔透视相机应该将三维世界中的直线投影成直线,但是当我们使用广角和鱼眼镜头时,由于畸变的原因,直线在图像里看起来是扭曲的。如下图所示：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="图像基础" scheme="http://panpanjiang.github.io/categories/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>shi-Tomasi score</title>
+    <link href="http://panpanjiang.github.io/2018/12/07/harris-shitomasi/"/>
+    <id>http://panpanjiang.github.io/2018/12/07/harris-shitomasi/</id>
+    <published>2018-12-07T03:34:06.000Z</published>
+    <updated>2018-12-07T09:36:05.390Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在视觉里程计部分，在对图像帧提取Fast特征点后，计算shi-Tomasi角点检测，根据阈值选择更好的角点。&lt;/p&gt;
+&lt;p&gt;那什么是shi-Tomasi角点检测？shi-Tomasi分数又该如何计算呢？shi-Tomasi是harris角点的改进版。我们先来看看harris角点检测。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="图像基础" scheme="http://panpanjiang.github.io/categories/%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>简单的两两帧单目视觉里程计</title>
@@ -73,25 +128,6 @@
   </entry>
   
   <entry>
-    <title>337.House RobberIII</title>
-    <link href="http://panpanjiang.github.io/2018/10/28/337/"/>
-    <id>http://panpanjiang.github.io/2018/10/28/337/</id>
-    <published>2018-10-28T07:26:40.000Z</published>
-    <updated>2018-11-05T07:16:04.317Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/house-robber-iii/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/house-robber-iii/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>638.Shopping Offers</title>
     <link href="http://panpanjiang.github.io/2018/10/28/638/"/>
     <id>http://panpanjiang.github.io/2018/10/28/638/</id>
@@ -140,6 +176,25 @@
     
       &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/loud-and-rich/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/loud-and-rich/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;思路：广度搜索。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://panpanjiang.github.io/categories/leetcode/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>337.House RobberIII</title>
+    <link href="http://panpanjiang.github.io/2018/10/28/337/"/>
+    <id>http://panpanjiang.github.io/2018/10/28/337/</id>
+    <published>2018-10-28T07:26:40.000Z</published>
+    <updated>2018-11-05T07:16:04.317Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;题目详见：&lt;a href=&quot;https://leetcode.com/problems/house-robber-iii/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://leetcode.com/problems/house-robber-iii/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

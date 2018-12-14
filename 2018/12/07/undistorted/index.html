@@ -81,17 +81,21 @@
 
 
 
-<meta name="description" content="vslam">
+<meta name="description" content="现实生活中的图像总存在畸变。原则上来说,针孔透视相机应该将三维世界中的直线投影成直线,但是当我们使用广角和鱼眼镜头时,由于畸变的原因,直线在图像里看起来是扭曲的。如下图所示：">
 <meta name="keywords" content="slam">
-<meta property="og:type" content="website">
-<meta property="og:title" content="轨迹">
-<meta property="og:url" content="http://panpanjiang.github.io/categories/三维空间刚体运动/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像去畸变">
+<meta property="og:url" content="http://panpanjiang.github.io/2018/12/07/undistorted/index.html">
 <meta property="og:site_name" content="轨迹">
-<meta property="og:description" content="vslam">
+<meta property="og:description" content="现实生活中的图像总存在畸变。原则上来说,针孔透视相机应该将三维世界中的直线投影成直线,但是当我们使用广角和鱼眼镜头时,由于畸变的原因,直线在图像里看起来是扭曲的。如下图所示：">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://panpanjiang.github.io/2018/12/07/undistorted/test.png">
+<meta property="og:image" content="http://panpanjiang.github.io/2018/12/07/undistorted/undistorted.png">
+<meta property="og:updated_time" content="2018-12-14T05:56:37.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="轨迹">
-<meta name="twitter:description" content="vslam">
+<meta name="twitter:title" content="图像去畸变">
+<meta name="twitter:description" content="现实生活中的图像总存在畸变。原则上来说,针孔透视相机应该将三维世界中的直线投影成直线,但是当我们使用广角和鱼眼镜头时,由于畸变的原因,直线在图像里看起来是扭曲的。如下图所示：">
+<meta name="twitter:image" content="http://panpanjiang.github.io/2018/12/07/undistorted/test.png">
 
 
 
@@ -121,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://panpanjiang.github.io/categories/三维空间刚体运动/"/>
+  <link rel="canonical" href="http://panpanjiang.github.io/2018/12/07/undistorted/"/>
 
 
 
 
 
-  <title>分类: 三维空间刚体运动 | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>图像去畸变 | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -146,7 +150,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -264,83 +268,185 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>三维空间刚体运动<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://panpanjiang.github.io/2018/12/07/undistorted/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panpanjiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轨迹">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/10/28/Rodrigues formula/" itemprop="url">
-              
-                <span itemprop="name">Rodrigues Formula</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">图像去畸变</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-28T15:26:40+08:00"
-              content="2018-10-28" >
-          10-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T17:34:51+08:00">
+                2018-12-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图像基础/" itemprop="url" rel="index">
+                    <span itemprop="name">图像基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/28/万向锁/" itemprop="url">
-              
-                <span itemprop="name">万向锁</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-28T15:26:40+08:00"
-              content="2018-10-28" >
-          10-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>现实生活中的图像总存在畸变。原则上来说,针孔透视相机应该将三维世界中的直线投影成直线,但是当我们使用广角和鱼眼镜头时,由于畸变的原因,直线在图像里看起来是扭曲的。如下图所示：</p>
+<a id="more"></a>
+<p><img src="/2018/12/07/undistorted/test.png" alt=""></p>
+<p>可以明显看到实际的柱子、箱子的直线边缘在图像中被扭曲成了曲线。这就是由相机畸变造成的。在这里，我们只考虑径向畸变和切向畸变，畸变模型是叠加在归一化平面（投影模型）上的。径向切向畸变公式合起来写如下：</p>
+<script type="math/tex; mode=display">
+x_{distorted}=x(1+k_1r^2+k_2r^4)+2p_1xy+p_2(r^2+2x^2) \\
+y_{distorted}=y(1+k_1r^2+k_2r^4)+p_1(r^2+2y^2)+2p_2xy</script><p>其中，</p>
+<ul>
+<li><p>$x_{distorted},y_{distorted}$表示畸变后的投影模型上的坐标</p>
+</li>
+<li><p>$x,y$表示畸变前的投影模型上的坐标</p>
+</li>
+<li><p>$r^2=x^2+y^2$</p>
+</li>
+</ul>
+<p>去畸变思路：构建一个空白的图像（去畸变后的图像），然后遍历空白图像的每个像素点，通过像素点$\rightarrow$归一化平面坐标$\rightarrow$畸变模型$\rightarrow$畸变图像上的像素坐标，从而得到了去畸变后的图像与畸变图像像素坐标之间对应关系，由此问题得解。</p>
+<figure class="highlight c"><figcaption><span>++</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 计算去畸变后图像的内容</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; rows; v++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; cols; u++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">double</span> u_distorted = <span class="number">0</span>, v_distorted = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//按照公式，计算点(u,v)对应到畸变图像中的坐标(u_distorted, v_distorted)         </span></span><br><span class="line">			<span class="keyword">double</span> x=(u-cx)/fx;</span><br><span class="line">			<span class="keyword">double</span> y=(v-cy)/fy;<span class="comment">//归一化坐标</span></span><br><span class="line">			<span class="keyword">double</span> r2=x*x+y*y;</span><br><span class="line">            <span class="keyword">double</span> x_distorted=x*(<span class="number">1</span>+k1*r2+k2*r2*r2)+<span class="number">2</span>*p1*x*y+p2*(r2+<span class="number">2</span>*x*x);</span><br><span class="line">			<span class="keyword">double</span> y_distorted=y*(<span class="number">1</span>+k1*r2+k2*r2*r2)+p1*(r2+<span class="number">2</span>*y*y)+<span class="number">2</span>*p2*x*y;</span><br><span class="line">			u_distorted=x_distorted*fx+cx;</span><br><span class="line">			v_distorted=y_distorted*fy+cy;            </span><br><span class="line"></span><br><span class="line">            <span class="comment">// 赋值 (最近邻插值)</span></span><br><span class="line">            <span class="keyword">if</span> (u_distorted &gt;= <span class="number">0</span> &amp;&amp; v_distorted &gt;= <span class="number">0</span> &amp;&amp; u_distorted &lt; cols &amp;&amp; v_distorted &lt; rows) &#123;</span><br><span class="line">                image_undistort.at&lt;uchar&gt;(v, u) = image.at&lt;uchar&gt;((<span class="keyword">int</span>) v_distorted, (<span class="keyword">int</span>) u_distorted);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                image_undistort.at&lt;uchar&gt;(v, u) = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到去畸变后，箱子和柱子边缘的线明显变直了：</p>
+<p><img src="/2018/12/07/undistorted/undistorted.png" alt=""></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/07/harris-shitomasi/" rel="next" title="shi-Tomasi score">
+                <i class="fa fa-chevron-left"></i> shi-Tomasi score
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/14/Oriented-Fast/" rel="prev" title="二维坐标系间的转换">
+                二维坐标系间的转换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -348,6 +454,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -571,6 +681,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

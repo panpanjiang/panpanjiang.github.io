@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="vslam">
+<meta name="description" content="在视觉里程计部分，在对图像帧提取Fast特征点后，计算shi-Tomasi角点检测，根据阈值选择更好的角点。 那什么是shi-Tomasi角点检测？shi-Tomasi分数又该如何计算呢？shi-Tomasi是harris角点的改进版。我们先来看看harris角点检测。">
 <meta name="keywords" content="slam">
-<meta property="og:type" content="website">
-<meta property="og:title" content="轨迹">
-<meta property="og:url" content="http://panpanjiang.github.io/categories/三维空间刚体运动/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shi-Tomasi score">
+<meta property="og:url" content="http://panpanjiang.github.io/2018/12/07/harris-shitomasi/index.html">
 <meta property="og:site_name" content="轨迹">
-<meta property="og:description" content="vslam">
+<meta property="og:description" content="在视觉里程计部分，在对图像帧提取Fast特征点后，计算shi-Tomasi角点检测，根据阈值选择更好的角点。 那什么是shi-Tomasi角点检测？shi-Tomasi分数又该如何计算呢？shi-Tomasi是harris角点的改进版。我们先来看看harris角点检测。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-07T09:36:05.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="轨迹">
-<meta name="twitter:description" content="vslam">
+<meta name="twitter:title" content="shi-Tomasi score">
+<meta name="twitter:description" content="在视觉里程计部分，在对图像帧提取Fast特征点后，计算shi-Tomasi角点检测，根据阈值选择更好的角点。 那什么是shi-Tomasi角点检测？shi-Tomasi分数又该如何计算呢？shi-Tomasi是harris角点的改进版。我们先来看看harris角点检测。">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://panpanjiang.github.io/categories/三维空间刚体运动/"/>
+  <link rel="canonical" href="http://panpanjiang.github.io/2018/12/07/harris-shitomasi/"/>
 
 
 
 
 
-  <title>分类: 三维空间刚体运动 | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>shi-Tomasi score | 轨迹</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -146,7 +147,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -264,83 +265,210 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>三维空间刚体运动<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://panpanjiang.github.io/2018/12/07/harris-shitomasi/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panpanjiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轨迹">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/10/28/Rodrigues formula/" itemprop="url">
-              
-                <span itemprop="name">Rodrigues Formula</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">shi-Tomasi score</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-28T15:26:40+08:00"
-              content="2018-10-28" >
-          10-28
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-07T11:34:06+08:00">
+                2018-12-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图像基础/" itemprop="url" rel="index">
+                    <span itemprop="name">图像基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/28/万向锁/" itemprop="url">
-              
-                <span itemprop="name">万向锁</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-28T15:26:40+08:00"
-              content="2018-10-28" >
-          10-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>在视觉里程计部分，在对图像帧提取Fast特征点后，计算shi-Tomasi角点检测，根据阈值选择更好的角点。</p>
+<p>那什么是shi-Tomasi角点检测？shi-Tomasi分数又该如何计算呢？shi-Tomasi是harris角点的改进版。我们先来看看harris角点检测。</p>
+<a id="more"></a>
+<h4 id="harris-角点检测"><a href="#harris-角点检测" class="headerlink" title="harris 角点检测"></a>harris 角点检测</h4><p>harris的想法是，在image里，如果一个小的patch（或者叫窗口）进行小范围的移动时，窗口内的像素灰度值能产生明显的变化，则认为该窗口中存在角点。转换成数学表达式为：</p>
+<script type="math/tex; mode=display">
+E(u,v)=\sum_{x,y}w(x,y)[I(x+u,y+v)-I(x,y)]^2</script><ul>
+<li>$E$是原始窗口和移动后的窗口的差分</li>
+<li>$u$是在$x$方向上窗口的平移</li>
+<li>$v$是在$y$方向上窗口的平移</li>
+<li>$w(x,y)$是窗口在点$(x,y)$位置上的权重</li>
+<li>$I$是图像在点$(x,y)$处的灰度值</li>
+<li>$I(x+u,y+v)$指窗口移动后的灰度值</li>
+<li>$I(x,y)$指原始窗口的灰度值</li>
+</ul>
+<p>现在若要找到一个harris角点，则需要寻找一个窗口，使得其能产生一个大的$E$。也就是要最大化下面的式子(这里先把权重放一边，后面再补上)：</p>
+<script type="math/tex; mode=display">
+E(u,v)=\sum_{x,y}[I(x+u,y+v)-I(x,y)]^2</script><p>对上式进行一阶泰勒展开得：</p>
+<script type="math/tex; mode=display">
+E(u,v)\approx \sum_{x,y}[I(x,y)+uI_x+vI_y-I(x,y)]^2 \\
+=\sum_{x,y} (u^2I_x^2+2uvI_xI_y+v^2I_y^2) \\
+=\left[\begin{matrix} u & v \end{matrix}\right](\sum \left[\begin{matrix}
+I_x^2 & I_xI_y \\
+I_xI_y & I_y^2
+\end{matrix}\right])\left[\begin{matrix} u\\ v\end{matrix}\right]</script><p>在这里把刚才我们丢掉的权重补上，令</p>
+<script type="math/tex; mode=display">
+M=\sum w(x,y)\left[\begin{matrix}
+I_x^2 & I_xI_y \\
+I_xI_y & I_y^2
+\end{matrix}\right]</script><p>所以，</p>
+<script type="math/tex; mode=display">
+E(u,v)\approx \left[\begin{matrix} u&v\end{matrix}\right]M\left[\begin{matrix}u\\v\end{matrix}\right]</script><p>$M$的特征值$\lambda_1,\lambda_2$有助于判断一个窗口是否含有角点：</p>
+<ul>
+<li>若两个特征值都小，则在各个方向上都没有变化，说明窗口处在平滑区域</li>
+<li>若其中一个特征值大，另一个小，说明窗口在边缘上，沿边缘方向移动没有变化</li>
+<li>若两个特征值都大，则窗口中存在角点</li>
+</ul>
+<p>至此，我们就可以计算harris的评分分数$R$，若分数$R$大于某一阈值，则认为该窗口中存在角点：</p>
+<script type="math/tex; mode=display">
+R=detM-k(traceM)^2 \\
+detM=\lambda_1\lambda_2\\
+traceM=\lambda_1+\lambda_2</script><h4 id="shi-Tomasi角点检测"><a href="#shi-Tomasi角点检测" class="headerlink" title="shi-Tomasi角点检测"></a>shi-Tomasi角点检测</h4><p>shi-Tomasi角点检测是在harris上稍作修改，修改了评分计算：</p>
+<script type="math/tex; mode=display">
+R=min(\lambda_1,\lambda_2)</script><p>在视觉里程计中，该部分的实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> FastDetector::shiTomasiScore(<span class="keyword">const</span> cv::Mat&amp; img, <span class="keyword">int</span> u, <span class="keyword">int</span> v)</span><br><span class="line">	&#123;</span><br><span class="line">		assert(img.type() == CV_8UC1);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">float</span> dXX = <span class="number">0.0</span>;</span><br><span class="line">		<span class="keyword">float</span> dYY = <span class="number">0.0</span>;</span><br><span class="line">		<span class="keyword">float</span> dXY = <span class="number">0.0</span>;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> halfbox_size = <span class="number">4</span>;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> box_size = <span class="number">2</span> * halfbox_size;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> box_area = box_size*box_size;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> x_min = u - halfbox_size;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> x_max = u + halfbox_size;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> y_min = v - halfbox_size;</span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> y_max = v + halfbox_size;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (x_min &lt; <span class="number">1</span> || x_max &gt;= img.cols - <span class="number">1</span> || y_min &lt; <span class="number">1</span> || y_max &gt;= img.rows - <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0.0</span>; <span class="comment">// 面片太靠近边界，返回0</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">const</span> <span class="keyword">int</span> stride = img.step.p[<span class="number">0</span>];<span class="comment">//一行元素的个数</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> y = y_min; y &lt; y_max; ++y)<span class="comment">//垂直平移,计算每次平移后对角线上的灰度值差</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">const</span> <span class="keyword">uint8_t</span>* ptr_left = img.data + stride*y + x_min - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">const</span> <span class="keyword">uint8_t</span>* ptr_right = img.data + stride*y + x_min + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">const</span> <span class="keyword">uint8_t</span>* ptr_top = img.data + stride*(y - <span class="number">1</span>) + x_min;</span><br><span class="line">			<span class="keyword">const</span> <span class="keyword">uint8_t</span>* ptr_bottom = img.data + stride*(y + <span class="number">1</span>) + x_min;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> x = <span class="number">0</span>; x &lt; box_size; ++x, ++ptr_left, ++ptr_right, ++ptr_top, ++ptr_bottom)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">float</span> dx = *ptr_right - *ptr_left;<span class="comment">//计算I在x处的导数</span></span><br><span class="line">				<span class="keyword">float</span> dy = *ptr_bottom - *ptr_top;<span class="comment">//计算I在y处的导数</span></span><br><span class="line">				dXX += dx*dx;</span><br><span class="line">				dYY += dy*dy;</span><br><span class="line">				dXY += dx*dy;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 返回小的特征值</span></span><br><span class="line">		dXX = dXX / (<span class="number">2.0</span> * box_area);<span class="comment">//应该是乘了w(x,y)，权重</span></span><br><span class="line">		dYY = dYY / (<span class="number">2.0</span> * box_area);</span><br><span class="line">		dXY = dXY / (<span class="number">2.0</span> * box_area);</span><br><span class="line">    <span class="comment">//解一元二次方程，求最小特征值</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0.5</span> * (dXX + dYY - <span class="built_in">sqrt</span>((dXX + dYY) * (dXX + dYY) - <span class="number">4</span> * (dXX * dYY - dXY * dXY)));</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/16/learn-vo-1/" rel="next" title="简单的两两帧单目视觉里程计">
+                <i class="fa fa-chevron-left"></i> 简单的两两帧单目视觉里程计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/07/undistorted/" rel="prev" title="图像去畸变">
+                图像去畸变 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -348,6 +476,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -368,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -431,6 +572,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#harris-角点检测"><span class="nav-text">harris 角点检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shi-Tomasi角点检测"><span class="nav-text">shi-Tomasi角点检测</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -571,6 +728,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

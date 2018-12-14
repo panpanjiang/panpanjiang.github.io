@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二维坐标系间的转换]]></title>
+    <url>%2F2018%2F12%2F14%2FOriented-Fast%2F</url>
+    <content type="text"><![CDATA[描述在ORB特征点计算描述时，在计算之前需要将要比较的点对p,q根据Fast里计算出的方向$\theta$，先转一下得到$p^{‘},q^{‘}$，再比较$p^{‘},q^{‘}​$。那么这个转换如何计算呢？ 问题在坐标系uov中有点p,op绕o旋转$\theta$，求旋转后的点$p^{‘}$在坐标系uvo中的坐标。 分析解答 在求解的时候注意旋转角$\theta$的正负、坐标轴的朝向等问题。]]></content>
+      <categories>
+        <category>图像基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[图像去畸变]]></title>
+    <url>%2F2018%2F12%2F07%2Fundistorted%2F</url>
+    <content type="text"><![CDATA[现实生活中的图像总存在畸变。原则上来说,针孔透视相机应该将三维世界中的直线投影成直线,但是当我们使用广角和鱼眼镜头时,由于畸变的原因,直线在图像里看起来是扭曲的。如下图所示： 可以明显看到实际的柱子、箱子的直线边缘在图像中被扭曲成了曲线。这就是由相机畸变造成的。在这里，我们只考虑径向畸变和切向畸变，畸变模型是叠加在归一化平面（投影模型）上的。径向切向畸变公式合起来写如下： x_{distorted}=x(1+k_1r^2+k_2r^4)+2p_1xy+p_2(r^2+2x^2) \\ y_{distorted}=y(1+k_1r^2+k_2r^4)+p_1(r^2+2y^2)+2p_2xy其中， $x_{distorted},y_{distorted}$表示畸变后的投影模型上的坐标 $x,y$表示畸变前的投影模型上的坐标 $r^2=x^2+y^2$ 去畸变思路：构建一个空白的图像（去畸变后的图像），然后遍历空白图像的每个像素点，通过像素点$\rightarrow$归一化平面坐标$\rightarrow$畸变模型$\rightarrow$畸变图像上的像素坐标，从而得到了去畸变后的图像与畸变图像像素坐标之间对应关系，由此问题得解。 ++123456789101112131415161718192021// 计算去畸变后图像的内容 for (int v = 0; v &lt; rows; v++) for (int u = 0; u &lt; cols; u++) &#123; double u_distorted = 0, v_distorted = 0; //按照公式，计算点(u,v)对应到畸变图像中的坐标(u_distorted, v_distorted) double x=(u-cx)/fx; double y=(v-cy)/fy;//归一化坐标 double r2=x*x+y*y; double x_distorted=x*(1+k1*r2+k2*r2*r2)+2*p1*x*y+p2*(r2+2*x*x); double y_distorted=y*(1+k1*r2+k2*r2*r2)+p1*(r2+2*y*y)+2*p2*x*y; u_distorted=x_distorted*fx+cx; v_distorted=y_distorted*fy+cy; // 赋值 (最近邻插值) if (u_distorted &gt;= 0 &amp;&amp; v_distorted &gt;= 0 &amp;&amp; u_distorted &lt; cols &amp;&amp; v_distorted &lt; rows) &#123; image_undistort.at&lt;uchar&gt;(v, u) = image.at&lt;uchar&gt;((int) v_distorted, (int) u_distorted); &#125; else &#123; image_undistort.at&lt;uchar&gt;(v, u) = 0; &#125; &#125; 可以看到去畸变后，箱子和柱子边缘的线明显变直了：]]></content>
+      <categories>
+        <category>图像基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[shi-Tomasi score]]></title>
+    <url>%2F2018%2F12%2F07%2Fharris-shitomasi%2F</url>
+    <content type="text"><![CDATA[在视觉里程计部分，在对图像帧提取Fast特征点后，计算shi-Tomasi角点检测，根据阈值选择更好的角点。 那什么是shi-Tomasi角点检测？shi-Tomasi分数又该如何计算呢？shi-Tomasi是harris角点的改进版。我们先来看看harris角点检测。 harris 角点检测harris的想法是，在image里，如果一个小的patch（或者叫窗口）进行小范围的移动时，窗口内的像素灰度值能产生明显的变化，则认为该窗口中存在角点。转换成数学表达式为： E(u,v)=\sum_{x,y}w(x,y)[I(x+u,y+v)-I(x,y)]^2 $E$是原始窗口和移动后的窗口的差分 $u$是在$x$方向上窗口的平移 $v$是在$y$方向上窗口的平移 $w(x,y)$是窗口在点$(x,y)$位置上的权重 $I$是图像在点$(x,y)$处的灰度值 $I(x+u,y+v)$指窗口移动后的灰度值 $I(x,y)$指原始窗口的灰度值 现在若要找到一个harris角点，则需要寻找一个窗口，使得其能产生一个大的$E$。也就是要最大化下面的式子(这里先把权重放一边，后面再补上)： E(u,v)=\sum_{x,y}[I(x+u,y+v)-I(x,y)]^2对上式进行一阶泰勒展开得： E(u,v)\approx \sum_{x,y}[I(x,y)+uI_x+vI_y-I(x,y)]^2 \\ =\sum_{x,y} (u^2I_x^2+2uvI_xI_y+v^2I_y^2) \\ =\left[\begin{matrix} u & v \end{matrix}\right](\sum \left[\begin{matrix} I_x^2 & I_xI_y \\ I_xI_y & I_y^2 \end{matrix}\right])\left[\begin{matrix} u\\ v\end{matrix}\right]在这里把刚才我们丢掉的权重补上，令 M=\sum w(x,y)\left[\begin{matrix} I_x^2 & I_xI_y \\ I_xI_y & I_y^2 \end{matrix}\right]所以， E(u,v)\approx \left[\begin{matrix} u&v\end{matrix}\right]M\left[\begin{matrix}u\\v\end{matrix}\right]$M$的特征值$\lambda_1,\lambda_2$有助于判断一个窗口是否含有角点： 若两个特征值都小，则在各个方向上都没有变化，说明窗口处在平滑区域 若其中一个特征值大，另一个小，说明窗口在边缘上，沿边缘方向移动没有变化 若两个特征值都大，则窗口中存在角点 至此，我们就可以计算harris的评分分数$R$，若分数$R$大于某一阈值，则认为该窗口中存在角点： R=detM-k(traceM)^2 \\ detM=\lambda_1\lambda_2\\ traceM=\lambda_1+\lambda_2shi-Tomasi角点检测shi-Tomasi角点检测是在harris上稍作修改，修改了评分计算： R=min(\lambda_1,\lambda_2)在视觉里程计中，该部分的实现如下： 123456789101112131415161718192021222324252627282930313233343536373839404142float FastDetector::shiTomasiScore(const cv::Mat&amp; img, int u, int v) &#123; assert(img.type() == CV_8UC1); float dXX = 0.0; float dYY = 0.0; float dXY = 0.0; const int halfbox_size = 4; const int box_size = 2 * halfbox_size; const int box_area = box_size*box_size; const int x_min = u - halfbox_size; const int x_max = u + halfbox_size; const int y_min = v - halfbox_size; const int y_max = v + halfbox_size; if (x_min &lt; 1 || x_max &gt;= img.cols - 1 || y_min &lt; 1 || y_max &gt;= img.rows - 1) return 0.0; // 面片太靠近边界，返回0 const int stride = img.step.p[0];//一行元素的个数 for (int y = y_min; y &lt; y_max; ++y)//垂直平移,计算每次平移后对角线上的灰度值差 &#123; const uint8_t* ptr_left = img.data + stride*y + x_min - 1; const uint8_t* ptr_right = img.data + stride*y + x_min + 1; const uint8_t* ptr_top = img.data + stride*(y - 1) + x_min; const uint8_t* ptr_bottom = img.data + stride*(y + 1) + x_min; for (int x = 0; x &lt; box_size; ++x, ++ptr_left, ++ptr_right, ++ptr_top, ++ptr_bottom) &#123; float dx = *ptr_right - *ptr_left;//计算I在x处的导数 float dy = *ptr_bottom - *ptr_top;//计算I在y处的导数 dXX += dx*dx; dYY += dy*dy; dXY += dx*dy; &#125; &#125; // 返回小的特征值 dXX = dXX / (2.0 * box_area);//应该是乘了w(x,y)，权重 dYY = dYY / (2.0 * box_area); dXY = dXY / (2.0 * box_area); //解一元二次方程，求最小特征值 return 0.5 * (dXX + dYY - sqrt((dXX + dYY) * (dXX + dYY) - 4 * (dXX * dYY - dXY * dXY))); &#125;]]></content>
+      <categories>
+        <category>图像基础</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[简单的两两帧单目视觉里程计]]></title>
     <url>%2F2018%2F11%2F16%2Flearn-vo-1%2F</url>
     <content type="text"><![CDATA[这是一个简单的两两帧视觉里程计，两帧图像之间R，t的估计只使用了对极几何，尺度因子由数据集的真实轨迹获得，本项目的实现基于Opencv. 问题描述：输入：使用相机采集的图片序列；相机的内参（即焦距$f_x$,$fy$,相机光心$c_x$,$c_y$,畸变参数$k_1$,$k_2$,$k_3$,$p_1$,$p_2$），相机内参可通过Opencv、matlab、kalibr等工具进行标定。 输出：以第一帧图片为参考系，输出每帧图片的坐标。 算法步骤： 读入相机参数 获取两帧连续图像$I^t$,$I^{t+1}$ 对获取的图像进行去畸变处理 对$I^t$提取FAST特征点，使用LK金字塔光流法在$I^{t+1}$中跟踪这些特征点，若跟踪的特征点数量小于预设的阈值，则在$I^{t+1}$中重新提取FAST特征点 使用五点法及RANSAC计算本质矩阵$E$ 通过本质矩阵$E$估计两帧之间的$R,t$ 使用数据集中的真实轨迹获取两帧之间的尺度因子，计算出$I^{t+1}$在参考系中的$R,t$并输出显示 核心算法代码： 从第二帧开始，通过真实轨迹坐标计算并保存每帧的尺度到vector中 12345678910111213141516171819void getAbusoluteScale(vector&lt;double&gt; scale,string ground_truth)&#123; ifstream in; in.open(ground_truth); scale.push_back(1); string line=""; getline(in,line); istringstream item(line); double x_pre=0,y_pre=0,z_pre=0; double x=0,y=0,z=0; item&gt;&gt;x_pre&gt;&gt;y_pre&gt;&gt;z_pre; while(getline(in,line))&#123; istringstream nextItem(line); nextItem&gt;&gt;x&gt;&gt;y&gt;&gt;z; scale.push_back(sqrt((x - x_pre)*(x - x_pre) + (y - y_pre)*(y - y_pre) + (z - z_pre)*(z - z_pre))); x_pre=x; y_pre=y; z_pre=z; &#125;&#125; 转灰度图、去畸变 12cvtColor(ref,ref,CV_BGR2GRAY);undistort(ref,ref,K,DistCoef); 获取FAST特征点，并将其存于类型为vector的kp中，便于后续LK跟踪、本质矩阵计算 12345void featureDetection(Mat&amp; frame,vector&lt;Point2f&gt;&amp; kp)&#123; vector&lt;Point2f&gt; keypoints; FAST(frame,keypoints,40,true); KeyPoint::convert(keypoints,kp);&#125; 使用opencv的函数进行光流跟踪，返回两幅图像的匹配点，并将跟踪失败的点去掉 12345678910111213141516void LKFeatureTracking(Mat&amp; ref,Mat&amp; curr,vector&lt;Point2f&gt;&amp; ref_kp,vector&lt;Point2f&gt;&amp; cur_kp)&#123; vector&lt;uchar&gt; status; vector&lt;float&gt; err; cvCalcOpticalFlowPyrLK(ref,curr,ref_kp,cur_kp,status,err); vector&lt;Point2f&gt;::iterator ref_iter=ref_kp.begin(); vector&lt;Point2f&gt;::iterator cur_iter=cur_kp.begin(); for(auto state:status)&#123; if(state==0)&#123; ref_kp.erase(ref_iter); cur_kp.erase(cur_iter); &#125;else&#123; ref_iter++; cur_iter++; &#125; &#125; &#125; 计算本质矩阵，并从本质矩阵中估计R，t 12E=findEssentialMat(cur_kp,ref_kp,K,RANSAC);recoverPose(E, cur_kp,ref_kp,K,R, t); 设有三帧图像,索引分别为1,2,3，其中， T_{12}=\left[\begin{matrix} R_{12} & t_{12}\\ 0^T & 1 \end{matrix}\right] T_{23}=\left[\begin{matrix} R_{23} & t_{23}\\ 0^T & 1 \end{matrix}\right]\\所以第三帧到第一帧的变换矩阵为： T_{13}=T_{12}T_{23}=\left[\begin{matrix} R_{12}R_{23} & R_{12}t_{23}+t_{12}\\ 0^T & 1 \end{matrix}\right]所以，获取各帧图像的pose代码如下： 12t_f=R_f*(scale[frame_id]*t)+t_f;R_f=R_f*R; 如果需要跟踪的特征点少于阈值，则重新提取特征点 123if(cur_kp.size()&lt;MIN_NUM)&#123; featureDetection(curr,cur_kp);&#125; 数据集KITTI，运行结果： 与真实轨迹比较： 参考资料：http://avisingh599.github.io/vision/monocular-vo/]]></content>
@@ -25,14 +49,6 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[337.House RobberIII]]></title>
-    <url>%2F2018%2F10%2F28%2F337%2F</url>
-    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/house-robber-iii/ 思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。 123456789101112131415161718192021222324class Solution &#123;public: int rob(TreeNode* root) &#123; if(!root) return 0; int rob,notRob; dfs(root,rob,notRob); return max(rob,notRob); &#125;private: void dfs(TreeNode* root,int&amp; rob,int&amp; notRob)&#123; if(!root)&#123; rob=0; notRob=0; return; &#125; dfs(root-&gt;left,rob,notRob); int x,y; dfs(root-&gt;right,x,y); int tmp=rob; rob=root-&gt;val+notRob+y; notRob=max(tmp,notRob)+max(x,y); &#125; &#125;;]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[638.Shopping Offers]]></title>
     <url>%2F2018%2F10%2F28%2F638%2F</url>
     <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/shopping-offers/ 思路：递归+回溯。以必须购买的物品及其数量为目标，每次递归时，有两种情况：一为达到目标的最大花费即所有物品按原价购买，将该花费作为上限；二是购买special offers，花费为special offers的price+购买剩余物品的最少花费，此时，要考虑买到的物品是否符合要求，买到的物品数量不得超出目标数。 1234567891011121314151617181920212223242526class Solution &#123;public: int shoppingOffers(vector&lt;int&gt;&amp; price, vector&lt;vector&lt;int&gt;&gt;&amp; special, vector&lt;int&gt;&amp; needs) &#123; int minpay=0; for(int i=0;i&lt;needs.size();i++)&#123; minpay+=price[i]*needs[i]; &#125; for(auto s:special)&#123; bool can=true; for(int i=0;i&lt;needs.size();i++)&#123; if(needs[i]&lt;s[i])&#123; can=false; break; &#125; &#125; if(can)&#123; for(int i=0;i&lt;needs.size();i++) needs[i]-=s[i]; minpay=min(minpay,s[needs.size()]+shoppingOffers(price,special,needs)); for(int i=0;i&lt;needs.size();i++) needs[i]+=s[i]; &#125; &#125; return minpay; &#125;&#125;;]]></content>
@@ -52,6 +68,14 @@
     <title><![CDATA[851.Loud and Rich]]></title>
     <url>%2F2018%2F10%2F28%2F851%2F</url>
     <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/loud-and-rich/ 思路：广度搜索。 首先初始化answer[i]=i，即为其本身，然后建立一个二维graph，graph[i]存储的是遍历richer得到的比i有钱的人。并在遍历richer的时候给answer[i]赋值为当前遍历得到的符合要求的最小quiet的j。接下来从0开始，依次循环遍历graph，每次循环先将graph[i]中的元素压入临时队列que,然后进行广度搜索，在搜索的同时进行quiet的比较。由于之前在遍历richer的时候已经得到并存储了每组的quiet最小值，所以此时的比较是当前组的quiet值与出队元素组的quiet值的比较，就不用一个一个地比。当graph[0]搜索完成后，得到的answer[0]就是最后的结果，当后续graph[i]进行搜索时，若出队元素为0时，则无需将graph[0]中的元素压入队列，只需与answer[0]比较即可。runtime:48ms,由于queue不支持遍历，set虽然可以去重，但效率比vector低很多，所以graph使用$vector]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[337.House RobberIII]]></title>
+    <url>%2F2018%2F10%2F28%2F337%2F</url>
+    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/house-robber-iii/ 思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。 123456789101112131415161718192021222324class Solution &#123;public: int rob(TreeNode* root) &#123; if(!root) return 0; int rob,notRob; dfs(root,rob,notRob); return max(rob,notRob); &#125;private: void dfs(TreeNode* root,int&amp; rob,int&amp; notRob)&#123; if(!root)&#123; rob=0; notRob=0; return; &#125; dfs(root-&gt;left,rob,notRob); int x,y; dfs(root-&gt;right,x,y); int tmp=rob; rob=root-&gt;val+notRob+y; notRob=max(tmp,notRob)+max(x,y); &#125; &#125;;]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
