@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[本质矩阵分解]]></title>
+    <url>%2F2019%2F01%2F03%2F%E6%9C%AC%E8%B4%A8%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[本质矩阵给定本质矩阵E，求分解得到的R、t 解： W=\left[\begin{matrix} 0&-1&0\\ 1&0&0\\ 0&0&1 \end{matrix}\right] , Z=\left[\begin{matrix} 0&1&0\\ -1&0&0\\ 0&0&0 \end{matrix}\right]本质矩阵固有的性质：它的奇异值中有两个相等而第三个是0。对E进行SVD分解：$E=Udialg(1,1,0)V^T$ 则R、t可能的解有 t=U(0,0,1)^T=u_3即U的最后一列，t的符号不确定，有正负两种情况。R也有两种情况： R=UWV^T\\ R=UW^TV^T所以分解得到的R、t有4种解。 基本矩阵给定一对图像，对于一幅图像上的每点x，在另一幅图像中存在一条对应的对极线$I’$.在第二幅图像上，任何与该点x匹配的点x’必然在对极线$I’$上。基本矩阵F表示的是从点到直线的摄影映射，即一幅图像的点到另一幅图像上与之相对应的对极线的映射$x\rightarrow I’$. 给定点$x’$,通过$x’$和对极点$e’$的对极线$I’$可记为$I’=e’\times x’=[e’]_{\times}x’$（见过两点的直线表示）。根据之前的单应矩阵，可知$x’=Hx$，所以： I'=[e']_{\times}Hx定义基本矩阵$F=[e’]_{\times}H$.所以对极线为$I’=Fx$,因为x’在$I’$上，所以$x’^TI’=x’^TFx$. 退化如果点对应集不能唯一确定对极几何，即如果存在线性独立的秩为2的矩阵$F_j,j=1,2$,使得 x_i'F_1x_i=0\\ x_i'F_2x_i=0则称它在几何上相对于F是退化的。]]></content>
+      <categories>
+        <category>MVG</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[过两点的直线表示]]></title>
+    <url>%2F2019%2F01%2F02%2F%E8%BF%87%E4%B8%A4%E7%82%B9%E7%9A%84%E7%9B%B4%E7%BA%BF%E8%A1%A8%E7%A4%BA%2F</url>
+    <content type="text"><![CDATA[给定两点e,X，分别记为$(e_x,e_y),(x’,y’)$，则过这两点的直线可表示为$I’=[e]_{\times}X$. 证： I'=[e]_{\times}X= \left[\begin{matrix} 0&-1&e_y\\ 1&0&-e_x\\ -e_y&e_x&0 \end{matrix}\right] \left[\begin{matrix} x'\\ y'\\ 1 \end{matrix}\right]= \left[\begin{matrix} -y'+e_y\\ x'-e_x\\ -x'e_y+y'e_x \end{matrix}\right]由直线方程两点式得： \frac{x-e_x}{x'-e_x}=\frac{y-e_y}{y'-e_y}\\ (x-e_x)(y'-e_y)=(x'-e_x)(y-e_y)\\ xy'-xe_y-e_xy'=x'y-x'e_y-e_xy\\ 0=(e_y-y')x+(x'-e_x)y+y'e_x-x'e_y\\证毕。]]></content>
+      <categories>
+        <category>MVG</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[三角化]]></title>
+    <url>%2F2018%2F12%2F29%2F%E4%B8%89%E8%A7%92%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[以第一幅图的相机坐标系为参考系，已知空间点X在两幅图像中的投影分别是$(x_1,y_1),(x_2,y_2)$，相机的内参矩阵K，以及第一帧相机坐标系到第二帧的旋转和平移$R_{21},t_{21}$.求空间点X的坐标。 解： 整个方法流程跟求单应矩阵类似，都是用了DLT，先都写成齐次坐标的形式： s_1\left[\begin{matrix} x_1\\ y_1\\ 1 \end{matrix}\right]=KX=K\left[\begin{matrix} I|0 \end{matrix}\right]\left[\begin{matrix} X\\ 1 \end{matrix}\right]\\ s_2\left[\begin{matrix} x_2\\ y_2\\ 1 \end{matrix}\right]=K(R_{21}X+t_{21})=K[R_{21}|t_{21}]\left[\begin{matrix} X\\ 1 \end{matrix}\right]令 P_1=K[I|0]\\ P_2=K[R_{21}|t_{21}]则 \left[\begin{matrix} x_1\\ y_1\\ 1 \end{matrix}\right]=P_1\left[\begin{matrix} X\\ 1 \end{matrix}\right]\\ \left[\begin{matrix} x_2\\ y_2\\ 1 \end{matrix}\right]=P_2\left[\begin{matrix} X\\ 1 \end{matrix}\right]叉乘，写成齐次方程的形式： \left[\begin{matrix} x_1\\ y_1\\ 1 \end{matrix}\right]_{\times}P_1\left[\begin{matrix} X\\ 1 \end{matrix}\right]=0\\ \left[\begin{matrix} 0&-1&y_1\\ 1&0&-x_1\\ -y_1&x_1&0 \end{matrix}\right]\left[\begin{matrix} --p_0--\\ --p_1--\\ --p_2-- \end{matrix}\right]X=0\\ \left[\begin{matrix} -p_1+y_1p_2\\ p_0-x_1p_2\\ -y_1p_0+x_1p_1 \end{matrix}\right]X=0第三行可由前两行线性变换得到，所以可以把第三行去掉，只看前两行，对于第二幅的点也可得到两个方程，所以一共可以得到4组齐次方程，其系数矩阵记为A，通过SVD分解$A=U \sum V^T$，最小特征值对应的特征向量就是解，即V的最后一列列向量$v$，$v/v[3]$的前三个元素即为空间点的空间坐标。]]></content>
+      <categories>
+        <category>MVG</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[卡方分布]]></title>
+    <url>%2F2018%2F12%2F27%2F%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83%2F</url>
+    <content type="text"><![CDATA[概念若n个相互独立的随机变量ξ₁，ξ₂，…,ξn ，均服从标准正态分布（也称独立同分布于标准正态分布）$N(0,1)$，则这n个服从标准正态分布的随机变量的平方和$Q=\sum_{i=1}^n \xi_i^2$构成一新的随机变量$\chi^2$，其分布规律称为卡方分布（chi-square distribution）。n为自由度，自由度不同就是不同的卡方分布。 若$X_1,X_2,…,X_n$是$N(\mu,\sigma^2)$的随机变量，则$\sum_{i=1}^n(X_i-\bar X)^2\sim \sigma^2\chi_{n-1}^2$,其中$\bar X=\frac {1}{n}\sum_{i=1}^n X_i$ 若$X_i \sim N(\mu_i,\sigma^2_i),i=1,…,k$,则卡方分布为：$\sum_{i=1}^k(\frac{X_i-\mu_i}{\sigma_i})^2$ 卡方分布用途检查实际结果与期望结果之间何时存在显著差异。 检验拟合优度，也就是说检验一组给定数据与指定分布的吻合程度。如：用来检验两幅图像的点对是否符合H（计算得到的单应矩阵），是否是内点。 自由度，即用于计算检验统计量$\chi^2$的独立变量的数目。如点，由$(x,y)$表示，自由度为2. 显著性，卡方分布指出观察与期望之间差异显著性（个人认为可以理解为观察与期望明显不符出现的概率，如外点出现的概率5%），使用显著性水平进行检验，常用的显著性水平为1%和5%。 如何检验？ 卡方分布使用的是单尾检验且是右尾，右尾被作为拒绝域。通过查看检验统计量$\chi^2$是否位于右尾的拒绝域内，来判断期望分布得出的结果。如下图： 卡方临界值表是给定可以查询的。 最后一行即显著性水平。 卡方分布假设检验步骤： （总是使用右尾） 1. 确定要进行检验的假设（H0）及其备择假设H1. 2. 求出期望E和自由度V. 3. 确定用于做决策的拒绝域（右尾）. 4. 计算检验统计量. 5. 查看检验统计量是否在拒绝域内. 6. 做出决策. Referencehttps://en.wikipedia.org/wiki/Chi-squared_distribution#Table_of_.CF.872_values_vs_p-values https://www.cnblogs.com/think-and-do/p/6509239.html]]></content>
+      <categories>
+        <category>数学基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[单应矩阵分解求R、T]]></title>
+    <url>%2F2018%2F12%2F27%2F%E5%8D%95%E5%BA%94%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E6%B1%82RT%2F</url>
+    <content type="text"><![CDATA[https://blog.csdn.net/kokerf/article/details/72885435 上述链接对单应矩阵分解有较详细的解释，中间有一些公式有点问题，推导过程是对的，结合论文看比较好。]]></content>
+      <categories>
+        <category>MVG</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[homography]]></title>
+    <url>%2F2018%2F12%2F24%2Fhomography%2F</url>
+    <content type="text"><![CDATA[Reference多视图几何 2D homography问题描述：给定一组点$x_i$和对应的一组点$x_i^{‘}$,$x_i,x_i^{‘}$都是平面上的点，求投影变换H，使得$x_i^{‘}=Hx_i$.(在实际情况下，这两组点分别是两幅图像上的点或者是同一幅图像上的点，其中每幅图像都被看成是一个投影平面。) 解法一：DLT（Direct Linear Transformation） 点$x_i,x_i^{‘}$使用齐次坐标表示。要求解H，使得$x_i^{‘}=Hx_i$. 先做叉积可得：$x_i^{‘}\times Hx_i=0$,可知H乘以一个尺度因子k也满足该等式，即H有8个自由度,令$h^{jT}$表示H的第j行，则： Hx_i=\left[\begin{matrix} h^{1T}x_i\\ h^{2T}x_i\\ h^{3T}x_i \end{matrix}\right]令点$x_i^{‘}$为$(x_i^{‘},y_i^{‘},w_i^{‘})^T$,所以上面的叉积可以表示为： x_i^{'}\times Hx_i=\left[\begin{matrix} y_i^{'}h^{3T}x_i-w_i^{'}h^{2T}x_i\\ w_i^{'}h^{1T}x_i-x_i^{'}h^{3T}x_i\\ x_i^{'}h^{2T}x_i-y_i^{'}h^{1T}x_i \end{matrix}\right]=0由于$h^{jT}x_i=x_i^{T}h^j$,所以上式可写成 \left[\begin{matrix} 0^{T} & -w_i^{'}x_i^{T} & y_i^{'}x_i^{T}\\ w_i^{'}x_i^{T} & 0^{T} & -x_i^{'}x_i^{T}\\ -y_i^{'}x_i^{T} & x_i^{'}x_i^{T} & 0^{T} \end{matrix}\right] \left[\begin{matrix} h^{1}\\ h^{2}\\ h^{3} \end{matrix}\right]=0由于第三行可由前两行通过线性变换得到（第一行乘以$x_i^{‘}$加上第二行乘以$y_i^{‘}$得到的和再缩放一个尺度因子即可得到），所以一对点提供了两个方程,如式一： \left[\begin{matrix} 0^{T} & -w_i^{'}x_i^{T} & y_i^{'}x_i^{T}\\ w_i^{'}x_i^{T} & 0^{T} & -x_i^{'}x_i^{T} \end{matrix}\right] \left[\begin{matrix} h^{1}\\ h^{2}\\ h^{3} \end{matrix}\right]=0将上式记为$A_ih=0$,则8个自由度需要4对点。求解h的步骤为： 有$4\le n$对点，用每对点计算一个$A_i$ 将n个$A_i$堆砌写成一个A 将A进行SVD分解，最小奇异值对应的单位奇异向量即为解h 退化若给定的4对点中，其中三点共线则会出现退化，即在这条线$l$上的点$x_i$都会使得$H^x_i=0$,从而$x_i$对应的映射点$x_i^{‘}$就不确定了（其中$H^=x_4^{‘}l^T$,可验证：$x_i^{‘}\times H^x_i=0$,也可验证对于所有的$i$都满足式一，所以$H^$是$x_i^{‘}=Hx_i$的解）。若给定点大于4对，则在多余的对应点中只要存在3点共线，则退化问题没有解决。若$H^$为$x_i^{‘}=Hx_i$的唯一解（这种情况在$x_1,x_2,x_3$共线但$x_1^{‘},x_2^{‘},x_3^{‘}$不共线时发生），则不存在$x_i$到$x_i^{‘}$的变换；若除了$H^$外，还有另一个解$H$存在，则$\alpha H^*+\beta H$都是该变换的解。 归一化归一化变换将消除由任意选取图像坐标系的原点和尺度所产生的影响。数据归一化提高了结果的精度。假设一幅图像的坐标$x$被$\overline x=Tx$替代，另一幅图的坐标$x^{‘}$被$\overline x^{‘}=T^{‘}x^{‘}$替代。则： x=Hx^{'} \rightarrow T^{-1}\overline x=HT^{'-1}\overline x^{'} \rightarrow \overline x =THT^{'-1}\overline x^{'}令： \overline x= H^{'}\overline x^{'}则： H^{'}=THT^{'-1} \rightarrow H=T^{-1}H^{'}T^{'}归一化是重要的，在进行DLT求解H时，先将每幅图像的坐标进行归一化，求解$H^{‘}$后,再进一步求解H。推荐的归一化方法：平移+缩放 平移。将点进行平移使其形心位于原点 缩放。对点进行缩放使他们到原点的平均距离为$\sqrt 2$ 判断一对点在给定的H下是否是内点计算对称转移误差。设这对点为$x,x^{‘}$,计算$d(x,H^{-1}x^{‘})$,若$d&lt;t^2$则反向变换为内点，否则反向变换为外点，$t^2=5.99\sigma^2$(在显著性水平为5%的情况下，查表)，同理计算$d(x^{‘},Hx)$并判断前向变换，若前向和反向变换均为内点，则这对点为内点。]]></content>
+      <categories>
+        <category>MVG</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[SSD安装]]></title>
+    <url>%2F2018%2F12%2F21%2FSSD%E5%AE%89%E8%A3%85%2F</url>
+    <content type="text"><![CDATA[本人环境ubuntu16.04(仅cpu) 下载SSD项目123git clone https://github.com/weiliu89/caffe.gitcd caffegit checkout ssd 安装caffe相关依赖包12345sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compilersudo apt-get install --no-install-recommends libboost-all-devsudo apt-get install libatlas-base-devsudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-devsudo apt-get install liblapack-dev liblapack3 libopenblas-base libopenblas-dev 配置1cp Makefile.config.example Makefile.config 修改Makefile.config： 1# CPU_ONLY:=1`改为`CPU_ONLY:=1 在INCLUDE_DIRS和LIBRARY_DIRS后面分别加上/usr/include/hdf5/serial和/usr/lib/x86_64-linux-gnu/hdf5/serial 12INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serialLIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial 进入python文件夹安装需要的包 1for req in $(cat requirements.txt); do sudo -H pip install $req; done 将该python文件夹的路径添加到PYTHONPATH中 1export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH 在Makefile文件的195行：12ifeq($(USE_OPENCV),1) LIBRARIES+= 在LIBRARIES后面添加opencv_videoio和opencv_imgcodecs 编译中途出错，建议make clean，再重新编译 编译1234make -j8make pymake test -j8make runtest -j8 运行demo下载训练好的模型文件放到models文件夹内，运行 1python examples/ssd/ssd_detect.py 效果如下终端上打印的为：[xmin,ymin,xmax,ymax,label,score,label_name] xmin,ymin,xmax,ymax为矩形框的范围，表示方式是图像宽高的百分比]]></content>
+      <categories>
+        <category>物体检测</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[二维坐标系间的转换]]></title>
     <url>%2F2018%2F12%2F14%2FOriented-Fast%2F</url>
     <content type="text"><![CDATA[描述在ORB特征点计算描述时，在计算之前需要将要比较的点对p,q根据Fast里计算出的方向$\theta$，先转一下得到$p^{‘},q^{‘}$，再比较$p^{‘},q^{‘}​$。那么这个转换如何计算呢？ 问题在坐标系uov中有点p,op绕o旋转$\theta$，求旋转后的点$p^{‘}$在坐标系uvo中的坐标。 分析解答 在求解的时候注意旋转角$\theta$的正负、坐标轴的朝向等问题。]]></content>
@@ -49,9 +105,41 @@
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[万向锁]]></title>
+    <url>%2F2018%2F10%2F28%2F%E4%B8%87%E5%90%91%E9%94%81%2F</url>
+    <content type="text"><![CDATA[欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中, 绕物体的Z轴旋转，得到偏航角yaw 绕旋转之后的Y轴旋转，得到俯仰角pitch 绕旋转之后的X轴旋转，得到滚转角roll 万向锁，欧拉角中的奇异性问题。即当$pitch=\pm{90^\circ}$时，旋转后的Z轴与原来的X轴重合，此时就会出现：之前先绕X轴旋转$\theta$，再绕Y轴旋转$\pm90^\circ$得到的结果等价于先绕Y轴旋转$\pm90^\circ$，再绕Z轴旋转$\theta$得到的结果，所以描述不唯一，就存在奇异性问题，所以欧拉角一般不做数学运算，多用于人机交互。 理论上可以证明，仅用三个实数表达三维旋转时，不可避免地存在奇异性问题。旋转向量也有奇异性问题，但出现少。 绕Y轴旋转前 绕Y轴旋转后，Z轴与旋转前的X轴重合]]></content>
+      <categories>
+        <category>三维空间刚体运动</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[638.Shopping Offers]]></title>
     <url>%2F2018%2F10%2F28%2F638%2F</url>
     <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/shopping-offers/ 思路：递归+回溯。以必须购买的物品及其数量为目标，每次递归时，有两种情况：一为达到目标的最大花费即所有物品按原价购买，将该花费作为上限；二是购买special offers，花费为special offers的price+购买剩余物品的最少花费，此时，要考虑买到的物品是否符合要求，买到的物品数量不得超出目标数。 1234567891011121314151617181920212223242526class Solution &#123;public: int shoppingOffers(vector&lt;int&gt;&amp; price, vector&lt;vector&lt;int&gt;&gt;&amp; special, vector&lt;int&gt;&amp; needs) &#123; int minpay=0; for(int i=0;i&lt;needs.size();i++)&#123; minpay+=price[i]*needs[i]; &#125; for(auto s:special)&#123; bool can=true; for(int i=0;i&lt;needs.size();i++)&#123; if(needs[i]&lt;s[i])&#123; can=false; break; &#125; &#125; if(can)&#123; for(int i=0;i&lt;needs.size();i++) needs[i]-=s[i]; minpay=min(minpay,s[needs.size()]+shoppingOffers(price,special,needs)); for(int i=0;i&lt;needs.size();i++) needs[i]+=s[i]; &#125; &#125; return minpay; &#125;&#125;;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[SO(3)伴随证明]]></title>
+    <url>%2F2018%2F10%2F28%2F%E4%BC%B4%E9%9A%8F%E6%8E%A8%E5%AF%BC%2F</url>
+    <content type="text"><![CDATA[证明 ：$Rexp(a^\times)R^T=exp((Ra)^\times)$ 解： 将左侧展开得： Rexp(a^\times)R^T=R\sum\frac{(a^\times)^n}{n!}R^T\\ =\sum\frac{R(a^\times)^nR^T}{n!}\\ =\sum\frac{(Ra^\times R^T)(Ra^\times R^T)(Ra^\times R^T)...}{n!}\\ =\sum\frac{(Ra^\times R^T)^n}{n!}\\ =exp(Ra^\times R^T)对要证等式两边同取对数，因此只要证明$Ra^\times R^T=(Ra)^\times$即可。 式子右边同乘向量$v$: (Ra)^\times v=(Ra)\times (RR^Tv)=R(a\times R^Tv)=Ra^\times R^Tv证毕。]]></content>
+      <categories>
+        <category>李群与李代数</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Rodrigues Formula]]></title>
+    <url>%2F2018%2F10%2F28%2FRodrigues%20formula%2F</url>
+    <content type="text"><![CDATA[已知旋转向量为$\theta k$，其中$k$为旋转轴上的单位向量，$|k|=1$，$\theta$为绕旋转轴旋转过的角度，证明Rodrigues formula: R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times其中，R为对应的旋转矩阵。 设$v$为将被旋转的向量，将其分解为与$k$平行方向及与$k$垂直方向上的两个分量$v_{||}$,$v_{\bot}$。分解如下图所示： 可得： v=v_{||}+v_\bot其中，由投影可知： v_{||}=(v\cdot k)k v_\bot=-k\times(k\times v)将$v$绕$k$轴旋转$\theta$角，即分别将其的两个分量绕$k$轴旋转$\theta$角，旋转后的矢量为： v_{rot}=v_{||rot}+v_{\bot rot} v_{\bot rot}=\cos\theta v_\bot+\sin\theta(k\times v_\bot)由于与$k$轴平行的分量旋转并不发生变化，所以： v_{||rot}=v_{||}其中 k\times v_\bot=k\times (v-v_{||})=k\times v-k\times v_{||}=k\times v所以： v_{rot}=v_{||}+\cos\theta v_\bot+\sin\theta(k\times v)\\ =v-v_\bot+\cos\theta v_\bot+\sin\theta(k\times v)\\ =v+(1-\cos\theta)k\times(k\times v)+\sin\theta(k\times v)\\ =v+(1-\cos\theta)k^\times k^\times v+\sin\theta k^\times v其中$k^\times$为k的反对称矩阵，即 k^\times=\left[ \begin{matrix} 0 & -k_3 & k_2\\ k_3 & 0 & -k_1\\ -k_2 & k_1 &0 \end{matrix} \right]叉积用矩阵表达为: k\times v=k^\times v通过计算可知： I+k^\times k^\times=kk^T代入得： v_{rot}=v+(1-\cos\theta)(kk^T-I)v+\sin\theta k^\times v\\ =\cos\theta Iv+(1-\cos\theta)kk^Tv+\sin\theta k^\times v\\ =(\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times)v又： v_{rot}=Rv所以： R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times证毕。]]></content>
+      <categories>
+        <category>三维空间刚体运动</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[851.Loud and Rich]]></title>
+    <url>%2F2018%2F10%2F28%2F851%2F</url>
+    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/loud-and-rich/ 思路：广度搜索。 首先初始化answer[i]=i，即为其本身，然后建立一个二维graph，graph[i]存储的是遍历richer得到的比i有钱的人。并在遍历richer的时候给answer[i]赋值为当前遍历得到的符合要求的最小quiet的j。接下来从0开始，依次循环遍历graph，每次循环先将graph[i]中的元素压入临时队列que,然后进行广度搜索，在搜索的同时进行quiet的比较。由于之前在遍历richer的时候已经得到并存储了每组的quiet最小值，所以此时的比较是当前组的quiet值与出队元素组的quiet值的比较，就不用一个一个地比。当graph[0]搜索完成后，得到的answer[0]就是最后的结果，当后续graph[i]进行搜索时，若出队元素为0时，则无需将graph[0]中的元素压入队列，只需与answer[0]比较即可。runtime:48ms,由于queue不支持遍历，set虽然可以去重，但效率比vector低很多，所以graph使用$vector]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -65,43 +153,11 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[851.Loud and Rich]]></title>
-    <url>%2F2018%2F10%2F28%2F851%2F</url>
-    <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/loud-and-rich/ 思路：广度搜索。 首先初始化answer[i]=i，即为其本身，然后建立一个二维graph，graph[i]存储的是遍历richer得到的比i有钱的人。并在遍历richer的时候给answer[i]赋值为当前遍历得到的符合要求的最小quiet的j。接下来从0开始，依次循环遍历graph，每次循环先将graph[i]中的元素压入临时队列que,然后进行广度搜索，在搜索的同时进行quiet的比较。由于之前在遍历richer的时候已经得到并存储了每组的quiet最小值，所以此时的比较是当前组的quiet值与出队元素组的quiet值的比较，就不用一个一个地比。当graph[0]搜索完成后，得到的answer[0]就是最后的结果，当后续graph[i]进行搜索时，若出队元素为0时，则无需将graph[0]中的元素压入队列，只需与answer[0]比较即可。runtime:48ms,由于queue不支持遍历，set虽然可以去重，但效率比vector低很多，所以graph使用$vector]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[337.House RobberIII]]></title>
     <url>%2F2018%2F10%2F28%2F337%2F</url>
     <content type="text"><![CDATA[题目详见：https://leetcode.com/problems/house-robber-iii/ 思路：深度搜索。两种情况：根节点rob，下一层的子节点必定不会rob；根节点不rob，下一层的左右子节点可rob也可不rob，取max(robLeft,notRobLeft)+max(robRight,notRobRight)作为根节点不rob所得的最大money。 123456789101112131415161718192021222324class Solution &#123;public: int rob(TreeNode* root) &#123; if(!root) return 0; int rob,notRob; dfs(root,rob,notRob); return max(rob,notRob); &#125;private: void dfs(TreeNode* root,int&amp; rob,int&amp; notRob)&#123; if(!root)&#123; rob=0; notRob=0; return; &#125; dfs(root-&gt;left,rob,notRob); int x,y; dfs(root-&gt;right,x,y); int tmp=rob; rob=root-&gt;val+notRob+y; notRob=max(tmp,notRob)+max(x,y); &#125; &#125;;]]></content>
       <categories>
         <category>leetcode</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Rodrigues Formula]]></title>
-    <url>%2F2018%2F10%2F28%2FRodrigues%20formula%2F</url>
-    <content type="text"><![CDATA[已知旋转向量为$\theta k$，其中$k$为旋转轴上的单位向量，$|k|=1$，$\theta$为绕旋转轴旋转过的角度，证明Rodrigues formula: R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times其中，R为对应的旋转矩阵。 设$v$为将被旋转的向量，将其分解为与$k$平行方向及与$k$垂直方向上的两个分量$v_{||}$,$v_{\bot}$。分解如下图所示： 可得： v=v_{||}+v_\bot其中，由投影可知： v_{||}=(v\cdot k)k v_\bot=-k\times(k\times v)将$v$绕$k$轴旋转$\theta$角，即分别将其的两个分量绕$k$轴旋转$\theta$角，旋转后的矢量为： v_{rot}=v_{||rot}+v_{\bot rot} v_{\bot rot}=\cos\theta v_\bot+\sin\theta(k\times v_\bot)由于与$k$轴平行的分量旋转并不发生变化，所以： v_{||rot}=v_{||}其中 k\times v_\bot=k\times (v-v_{||})=k\times v-k\times v_{||}=k\times v所以： v_{rot}=v_{||}+\cos\theta v_\bot+\sin\theta(k\times v)\\ =v-v_\bot+\cos\theta v_\bot+\sin\theta(k\times v)\\ =v+(1-\cos\theta)k\times(k\times v)+\sin\theta(k\times v)\\ =v+(1-\cos\theta)k^\times k^\times v+\sin\theta k^\times v其中$k^\times$为k的反对称矩阵，即 k^\times=\left[ \begin{matrix} 0 & -k_3 & k_2\\ k_3 & 0 & -k_1\\ -k_2 & k_1 &0 \end{matrix} \right]叉积用矩阵表达为: k\times v=k^\times v通过计算可知： I+k^\times k^\times=kk^T代入得： v_{rot}=v+(1-\cos\theta)(kk^T-I)v+\sin\theta k^\times v\\ =\cos\theta Iv+(1-\cos\theta)kk^Tv+\sin\theta k^\times v\\ =(\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times)v又： v_{rot}=Rv所以： R=\cos\theta I+(1-\cos\theta)kk^T+\sin\theta k^\times证毕。]]></content>
-      <categories>
-        <category>三维空间刚体运动</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[万向锁]]></title>
-    <url>%2F2018%2F10%2F28%2F%E4%B8%87%E5%90%91%E9%94%81%2F</url>
-    <content type="text"><![CDATA[欧拉角,一种描述三维旋转的方式，即将三维旋转描述分解为3个方向上的旋转。例如：按$Z\rightarrow Y\rightarrow X$的顺序旋转，其中, 绕物体的Z轴旋转，得到偏航角yaw 绕旋转之后的Y轴旋转，得到俯仰角pitch 绕旋转之后的X轴旋转，得到滚转角roll 万向锁，欧拉角中的奇异性问题。即当$pitch=\pm{90^\circ}$时，旋转后的Z轴与原来的X轴重合，此时就会出现：之前先绕X轴旋转$\theta$，再绕Y轴旋转$\pm90^\circ$得到的结果等价于先绕Y轴旋转$\pm90^\circ$，再绕Z轴旋转$\theta$得到的结果，所以描述不唯一，就存在奇异性问题，所以欧拉角一般不做数学运算，多用于人机交互。 理论上可以证明，仅用三个实数表达三维旋转时，不可避免地存在奇异性问题。旋转向量也有奇异性问题，但出现少。 绕Y轴旋转前 绕Y轴旋转后，Z轴与旋转前的X轴重合]]></content>
-      <categories>
-        <category>三维空间刚体运动</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[SO(3)伴随证明]]></title>
-    <url>%2F2018%2F10%2F28%2F%E4%BC%B4%E9%9A%8F%E6%8E%A8%E5%AF%BC%2F</url>
-    <content type="text"><![CDATA[证明 ：$Rexp(a^\times)R^T=exp((Ra)^\times)$ 解： 将左侧展开得： Rexp(a^\times)R^T=R\sum\frac{(a^\times)^n}{n!}R^T\\ =\sum\frac{R(a^\times)^nR^T}{n!}\\ =\sum\frac{(Ra^\times R^T)(Ra^\times R^T)(Ra^\times R^T)...}{n!}\\ =\sum\frac{(Ra^\times R^T)^n}{n!}\\ =exp(Ra^\times R^T)对要证等式两边同取对数，因此只要证明$Ra^\times R^T=(Ra)^\times$即可。 式子右边同乘向量$v$: (Ra)^\times v=(Ra)\times (RR^Tv)=R(a\times R^Tv)=Ra^\times R^Tv证毕。]]></content>
-      <categories>
-        <category>李群与李代数</category>
       </categories>
   </entry>
 </search>
