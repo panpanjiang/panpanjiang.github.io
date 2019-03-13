@@ -11,7 +11,7 @@
   <entry>
     <title><![CDATA[VINS视觉约束协方差]]></title>
     <url>%2F2019%2F03%2F01%2FVINS%E8%A7%86%E8%A7%89%E5%8D%8F%E6%96%B9%E5%B7%AE%2F</url>
-    <content type="text"><![CDATA[VINS视觉约束协方差 VINS视觉约束的协方差表示视觉测量的不确定性，这种不确定性来自于相机的空间点到像素平面的投影过程，在投影过程中，实际像素坐标=理论像素坐标+像素平面噪声（就是偏离了几个像素），这里取1.5个像素的偏离范围，即噪声为： Q\sim \mathcal{N}(0,1.5I_{2\times 2})由投影方程： u=f_x\frac{X}{Z}+c_x\\ v=f_y\frac{Y}{Z}+c_y知：像素坐标（单位：pix）除以焦距转到相机归一化平面（单位：m），归一化平面乘焦距转到像素平面。 将其投影到相机归一化平面可得归一化平面的噪声为： Q^{'}\sim \mathcal{N}(0,\frac{1.5}{f}I_{2\times 2})由高斯分布的线性变换可知，归一化平面坐标的协方差与噪声一致。在视觉约束中的马氏距离需要用到的信息矩阵即协方差的逆： \sum{vis^{-1}}=(\frac{1.5}{f}I_{2\times 2})^{-1}=\frac{f}{1.5}I_{2\times2}]]></content>
+    <content type="text"><![CDATA[VINS视觉约束协方差 VINS视觉约束的协方差表示视觉测量的不确定性，这种不确定性来自于相机的空间点到像素平面的投影过程，在投影过程中，实际像素坐标=理论像素坐标+像素平面噪声（就是偏离了几个像素），这里取1.5个像素的偏离范围，即噪声为： Q\sim \mathcal{N}(0,1.5^2I_{2\times 2})由投影方程： u=f_x\frac{X}{Z}+c_x\\ v=f_y\frac{Y}{Z}+c_y知：像素坐标（单位：pix）除以焦距转到相机归一化平面（单位：m），归一化平面乘焦距转到像素平面。 由高斯分布的线性变换可知，将其投影到相机归一化平面可得归一化平面的协方差为： \sum{vis}\sim \mathcal{N}(0,\frac{1.5^2}{f^2}I_{2\times 2})在视觉约束中的马氏距离$d=r^TP^{-1}r$需要用到的信息矩阵即协方差的逆： P^{-1}=(\frac{1.5^2}{f^2}I_{2\times 2})^{-1}=\frac{f^2}{1.5^2}I_{2\times2}由于ceres只接受最小二乘优化，即$min(e^Te)$,所以对信息矩阵进行$LLT$分解，$P^{-1}=LL^T$,所以： d=r^TP^{-1}r=r^TLL^Tr=(L^Tr)^T(L^Tr)所以新的残差为$L^Tr$.]]></content>
       <categories>
         <category>VINS</category>
       </categories>
@@ -57,19 +57,19 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[单应矩阵分解求R、T]]></title>
-    <url>%2F2018%2F12%2F27%2F%E5%8D%95%E5%BA%94%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E6%B1%82RT%2F</url>
-    <content type="text"><![CDATA[https://blog.csdn.net/kokerf/article/details/72885435 上述链接对单应矩阵分解有较详细的解释，中间有一些公式有点问题，推导过程是对的，结合论文看比较好。]]></content>
-      <categories>
-        <category>MVG</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[卡方分布]]></title>
     <url>%2F2018%2F12%2F27%2F%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83%2F</url>
     <content type="text"><![CDATA[概念若n个相互独立的随机变量ξ₁，ξ₂，…,ξn ，均服从标准正态分布（也称独立同分布于标准正态分布）$N(0,1)$，则这n个服从标准正态分布的随机变量的平方和$Q=\sum_{i=1}^n \xi_i^2$构成一新的随机变量$\chi^2$，其分布规律称为卡方分布（chi-square distribution）。n为自由度，自由度不同就是不同的卡方分布。 若$X_1,X_2,…,X_n$是$N(\mu,\sigma^2)$的随机变量，则$\sum_{i=1}^n(X_i-\bar X)^2\sim \sigma^2\chi_{n-1}^2$,其中$\bar X=\frac {1}{n}\sum_{i=1}^n X_i$ 若$X_i \sim N(\mu_i,\sigma^2_i),i=1,…,k$,则卡方分布为：$\sum_{i=1}^k(\frac{X_i-\mu_i}{\sigma_i})^2$ 卡方分布用途检查实际结果与期望结果之间何时存在显著差异。 检验拟合优度，也就是说检验一组给定数据与指定分布的吻合程度。如：用来检验两幅图像的点对是否符合H（计算得到的单应矩阵），是否是内点。 自由度，即用于计算检验统计量$\chi^2$的独立变量的数目。如点，由$(x,y)$表示，自由度为2. 显著性，卡方分布指出观察与期望之间差异显著性（个人认为可以理解为观察与期望明显不符出现的概率，如外点出现的概率5%），使用显著性水平进行检验，常用的显著性水平为1%和5%。 如何检验？ 卡方分布使用的是单尾检验且是右尾，右尾被作为拒绝域。通过查看检验统计量$\chi^2$是否位于右尾的拒绝域内，来判断期望分布得出的结果。如下图： 卡方临界值表是给定可以查询的。 最后一行即显著性水平。 卡方分布假设检验步骤： （总是使用右尾） 1. 确定要进行检验的假设（H0）及其备择假设H1. 2. 求出期望E和自由度V. 3. 确定用于做决策的拒绝域（右尾）. 4. 计算检验统计量. 5. 查看检验统计量是否在拒绝域内. 6. 做出决策. Referencehttps://en.wikipedia.org/wiki/Chi-squared_distribution#Table_of_.CF.872_values_vs_p-values https://www.cnblogs.com/think-and-do/p/6509239.html]]></content>
       <categories>
         <category>数学基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[单应矩阵分解求R、T]]></title>
+    <url>%2F2018%2F12%2F27%2F%E5%8D%95%E5%BA%94%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3%E6%B1%82RT%2F</url>
+    <content type="text"><![CDATA[https://blog.csdn.net/kokerf/article/details/72885435 上述链接对单应矩阵分解有较详细的解释，中间有一些公式有点问题，推导过程是对的，结合论文看比较好。]]></content>
+      <categories>
+        <category>MVG</category>
       </categories>
   </entry>
   <entry>

@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="轨迹">
 <meta property="og:description" content="VINS视觉约束协方差">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-01T07:51:52.009Z">
+<meta property="og:updated_time" content="2019-03-13T08:23:25.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VINS视觉约束协方差">
 <meta name="twitter:description" content="VINS视觉约束协方差">
@@ -371,15 +371,18 @@
         <h2 id="VINS视觉约束协方差"><a href="#VINS视觉约束协方差" class="headerlink" title="VINS视觉约束协方差"></a>VINS视觉约束协方差</h2><a id="more"></a>
 <p>VINS视觉约束的协方差表示视觉测量的不确定性，这种不确定性来自于相机的空间点到像素平面的投影过程，在投影过程中，实际像素坐标=理论像素坐标+像素平面噪声（就是偏离了几个像素），这里取1.5个像素的偏离范围，即噪声为：</p>
 <script type="math/tex; mode=display">
-Q\sim \mathcal{N}(0,1.5I_{2\times 2})</script><p>由投影方程：</p>
+Q\sim \mathcal{N}(0,1.5^2I_{2\times 2})</script><p>由投影方程：</p>
 <script type="math/tex; mode=display">
 u=f_x\frac{X}{Z}+c_x\\
 v=f_y\frac{Y}{Z}+c_y</script><p>知：<font color="red">像素坐标（单位：pix）除以焦距转到相机归一化平面（单位：m），归一化平面乘焦距转到像素平面</font>。</p>
-<p>将其投影到相机归一化平面可得归一化平面的噪声为：</p>
+<p>由高斯分布的线性变换可知，将其投影到相机归一化平面可得归一化平面的协方差为：</p>
 <script type="math/tex; mode=display">
-Q^{'}\sim \mathcal{N}(0,\frac{1.5}{f}I_{2\times 2})</script><p>由高斯分布的线性变换可知，归一化平面坐标的协方差与噪声一致。在视觉约束中的马氏距离需要用到的信息矩阵即协方差的逆：</p>
+\sum{vis}\sim \mathcal{N}(0,\frac{1.5^2}{f^2}I_{2\times 2})</script><p>在视觉约束中的马氏距离$d=r^TP^{-1}r$需要用到的信息矩阵即协方差的逆：</p>
 <script type="math/tex; mode=display">
-\sum{vis^{-1}}=(\frac{1.5}{f}I_{2\times 2})^{-1}=\frac{f}{1.5}I_{2\times2}</script>
+P^{-1}=(\frac{1.5^2}{f^2}I_{2\times 2})^{-1}=\frac{f^2}{1.5^2}I_{2\times2}</script><p>由于ceres只接受最小二乘优化，即$min(e^Te)$,所以对信息矩阵进行$LLT$分解，$P^{-1}=LL^T$,所以：</p>
+<script type="math/tex; mode=display">
+d=r^TP^{-1}r=r^TLL^Tr=(L^Tr)^T(L^Tr)</script><p>所以新的残差为$L^Tr$.</p>
+
       
     </div>
     
